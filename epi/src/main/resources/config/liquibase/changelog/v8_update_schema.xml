@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet id="epi_change_set_v_1.009" author="Habib Ksentini">
+
+		<createTable tableName="t_topic_validator_junc">
+			<column name="topic_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="validator_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addPrimaryKey columnNames="topic_id, validator_id"
+			tableName="t_topic_validator_junc" />
+
+		<addForeignKeyConstraint baseColumnNames="topic_id"
+			baseTableName="t_topic_validator_junc" constraintName="fk_topic_validator_junc_topic_id"
+			referencedColumnNames="id" referencedTableName="t_topic_param" />
+
+		<addForeignKeyConstraint baseColumnNames="validator_id"
+			baseTableName="t_topic_validator_junc" constraintName="fk_topic_validator_junc_validator_id"
+			referencedColumnNames="id" referencedTableName="t_user" />
+
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet id="epi_change_set_v_1.006" author="Habib Ksentini">
+
+		<createTable tableName="t_file">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="binary_data" type="blob">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="varchar(50)" />
+			<column name="last_modified_date" type="timestamp" />
+			<column name="teaching_exercise_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+
+		<addForeignKeyConstraint baseColumnNames="teaching_exercise_id"
+			baseTableName="t_file"
+			constraintName="fk_file_teaching_exercise_id"
+			referencedColumnNames="id" referencedTableName="t_teaching_exercise" />
+
+
+	</changeSet>
+</databaseChangeLog>

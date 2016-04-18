@@ -1,0 +1,147 @@
+<div ng-cloak>
+
+	<div ng-switch="isAuthenticated()">
+		<div ng-switch-when="true">
+			<ul class="breadcrumb breadcrumb-top">
+				<li class="active"><a ui-sref="home"><span
+						translate="global.menu.home">Home</span> </a></li>
+			</ul>
+
+
+			<div class="block-section clearfix" has-authority="ROLE_TEACHER")>
+				<button class="btn btn-sm btn-primary pull-right"
+					ui-sref="exercise-new">
+					<i class="glyphicon glyphicon-plus"></i> <span
+						translate="exercise.create.title"> Create EPI</span>
+				</button>
+			</div>
+
+
+			<div class="block full">
+				<div class="block-title">
+					<h2>
+						<span translate="main.tab.inPreparation"> EPI en cours de
+							redaction</span>
+					</h2>
+				</div>
+				<div>
+					<div class="table-responsive remove-margin-bottom"
+						ng-show="exerciseWithStatusInPrepartionAndWaitingForValidation.length > 0">
+						<table
+							class="table table-striped table-bordered table-vcenter remove-margin-bottom">
+							<thead>
+								<tr>
+									<th class="text-center"><span translate="main.epi.topic">Thème</span>
+										& <span translate="main.epi.disciplines">Disciplines</span></th>
+									<th class="text-center"><span translate="main.epi.subject">Sujet</span></th>
+									<th class="text-center"><span>Classe</span></th>
+									<th class="text-center"><span translate="main.epi.status">Status</span></th>
+									<th class="text-center"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									ng-repeat="exercise in exerciseWithStatusInPrepartionAndWaitingForValidation track by exercise.id">
+									<td class="text-center"><strong class="text-primary">
+											{{exercise.topic.name}} </strong><br> <span class="text-muted"><strong>
+												{{exercise.disciplines}} </strong></span></td>
+									<td class="text-center">{{exercise.subject}}</td>
+									<td class="text-center">{{exercise.group.nameWithLevel}}</td>
+
+									<td class="text-center"><span class="label label-danger"
+										ng-if="exercise.status == 'IN_PREPARATION'"
+										translate="exercise.progressionStatus.inProgress"></span> 
+										
+										<span 
+										uib-tooltip="{{'En attente de validation de : ' +  exercise.validator.firstName + ' ' + exercise.validator.lastName}}"
+										class="label label-warning"
+										ng-if="exercise.status == 'WAITING_FOR_VALIDATION'"
+										translate="exercise.progressionStatus.waiting"></span></td>
+
+									<td class="text-center">
+										<div class="btn-group btn-group-xs">
+											<a class="btn btn-default" href="javascript:void(0)"
+												ui-sref="exercise-details({id:exercise.id})"><i
+												class=" glyphicon glyphicon-eye-open"></i></a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<uib-pagination class="pagination-sm" total-items="totalItems"
+							ng-model="page"
+							ng-change="getInPrepartionAndWaitingForValidation()"></uib-pagination>
+					</div>
+				</div>
+
+				<h2 class="text-center"
+					ng-show="exerciseWithStatusInPrepartionAndWaitingForValidation.length === 0">Aucun
+					donnée trouvée</h2>
+			</div>
+
+
+			<div class="block full">
+				<div class="block-title">
+					<h2>
+						<span translate="main.tab.markedAsRead">EPI marques pour
+							lecture</span>
+					</h2>
+				</div>
+				<div ng-show="markedForReadExercies.length > 0">
+					<div class="table-responsive remove-margin-bottom">
+						<table
+							class="table table-striped table-bordered table-vcenter remove-margin-bottom">
+							<thead>
+								<tr>
+									<th class="text-center"><span translate="main.epi.topic">Th�me</span>
+										& <span translate="main.epi.disciplines">Disciplines</span></th>
+									<th class="text-center"><span translate="main.epi.subject">Sujet</span></th>
+									<th class="text-center"><span>Classe</span></th>
+									<th class="text-center"><span>Date de Validation</span></th>
+									<th class="text-center"></th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr
+									ng-repeat="exercise in markedForReadExercies track by exercise.id">
+									<td class="text-center"><strong class="text-primary">
+											{{exercise.topic.name}} </strong><br> <span class="text-muted"><strong>
+												{{exercise.disciplines}} </strong></span></td>
+									<td class="text-center">{{exercise.subject}}</td>
+									<td class="text-center">{{exercise.group.nameWithLevel}}</td>
+
+									<td class="text-center"><span>{{ExerciseDetailsController.exercise.validatedAt
+											| getDate |date:'dd/MM/yyyy'}}</span></td>
+									<td class="text-center">
+										<div class="btn-group btn-group-xs">
+											<a class="btn btn-default" href="javascript:void(0)"
+												ui-sref="exercise-details({id:exercise.id})"><i
+												class=" glyphicon glyphicon-eye-open"></i></a>
+										</div>
+									</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+
+					<uib-pagination class="pagination-sm" total-items="totalItems"
+							ng-model="page"
+							ng-change="getInPrepartionAndWaitingForValidation()"></uib-pagination>
+				</div>
+				<h2 class="text-center" ng-show="markedForReadExercies.length === 0">Aucun
+					donnée trouvée</h2>
+
+			</div>
+		</div>
+		<div class="alert alert-warning" ng-switch-when="false"
+			translate="global.messages.info.authenticated">
+			<a class="alert-link" href="#/login">Login</a>
+		</div>
+	</div>
+
+
+
+</div>

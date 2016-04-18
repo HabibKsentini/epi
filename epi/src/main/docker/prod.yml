@@ -1,0 +1,10 @@
+epi-postgresql:
+  container_name: epi-postgresql
+  image: postgres:9.4.5
+  # volumes:
+  #   - ~/volumes/jhipster/epi/postgresql/:/var/lib/postgresql/
+  environment:
+    - POSTGRES_USER=epi
+    - POSTGRES_PASSWORD=
+  ports:
+    - "5432:5432"

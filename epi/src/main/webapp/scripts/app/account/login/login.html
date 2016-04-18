@@ -1,0 +1,57 @@
+
+<img src="assets/images/login-background.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
+<div id="login-container" class="animation-fadeIn">
+	<div class="login-title text-center">
+		<h1>
+			<i class="glyphicon glyphicon-book"></i> <strong><span translate="global.title">EPI</span></strong><br>
+			<small>Connectez-vous</small>
+		</h1>
+	</div>
+
+		<div class="block push-bit">
+			<form class="form-horizontal form-bordered form-control-borderless"
+				class="form" role="form" ng-submit="login($event)"
+				novalidate="novalidate">
+				<div class="form-group">
+					<div class="col-xs-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input type="text"
+								class="form-control" id="username"
+								placeholder="{{'global.form.username.placeholder' | translate}}"
+								ng-model="username">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-asterisk"></i></span> <input type="password"
+								class="form-control" id="password"
+								placeholder="{{'login.form.password.placeholder' | translate}}"
+								ng-model="password">
+						</div>
+					</div>
+				</div>
+				<div class="form-group form-actions">
+					<div class="col-xs-4">
+						<label title=""  uib-tooltip="{{'login.form.rememberme' | translate}}"
+							class="switch switch-primary" data-original-title="Remember Me?">
+							<input type="checkbox" ng-model="rememberMe" checked
+							name="login-remember-me" id="login-remember-me"> <span></span>
+						</label>
+					</div>
+					<div class="col-xs-8 text-right">
+						<button class="btn btn-sm btn-primary" type="submit"
+							translate="login.form.button">Sign in</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12 text-center">
+						<a id="link-register-login" href="javascript:void(0)"><small>ERLM</small></a>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>

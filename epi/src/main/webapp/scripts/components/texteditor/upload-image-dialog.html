@@ -1,0 +1,25 @@
+<form data-ng-submit="insert()">
+	<div class="modal-header">
+		<h4>
+			 Insérer image
+		</h4>
+	</div>
+	<div class="modal-body">
+	{{image}}
+		<img data-ng-src="{{image}}">
+		<progressbar data-ng-show="progress > 0 && progress < 100"
+			class="progress-striped active" value="progress"></progressbar>
+	</div>
+	<div class="modal-footer">
+		<button data-ng-click="$dismiss()" type="button"
+			class="btn btn-default pull-left">Cancel</button>
+		<button type="submit"
+			data-ng-disabled="image == null || image == '' || image == 'img/posts/default.svg'"
+			class="btn btn-primary pull-right">Insert Image</button>
+		<button type="button" data-ngf-select data-ngf-change="upload()"
+			data-ng-model="file" data-ngf-multiple="false"
+			class="btn btn-primary pull-right">
+			<span class="glyphicon glyphicon-picture mR5"></span>Upload Image
+		</button>
+	</div>
+</form>

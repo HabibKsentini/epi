@@ -1,0 +1,23 @@
+<div id="page-wrapper">
+	<div id="page-container"
+		class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+
+		<div ui-view="sidebar" ng-cloak=""></div>
+		<div id="main-container">
+			<div ui-view="navbar" ng-cloak=""></div>
+
+			<div id="page-content" style="min-height: 900px">
+				<div ng-cloak>
+					<div ui-view="content"></div>
+				</div>
+			</div>
+			<footer class="clearfix">
+				<div class="pull-right">
+					<i class="fa fa-book text-danger"></i> <a
+						href="javascript:void(0);" target="_blank">BNDEPI-ERLM</a>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+</div>

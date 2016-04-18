@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="autoIncrement" value="true"
+		dbms="mysql,h2,postgresql,oracle" />
+
+	<changeSet id="epi_change_set_v_1.002" author="Habib Ksentini">
+	
+		<createTable tableName="t_discipline_param">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints unique="true" nullable="false" />
+			</column>
+		</createTable>
+
+		<loadData encoding="UTF-8" file="config/liquibase/disciplines.csv"
+			separator=";" tableName="t_discipline_param" />
+
+		<createTable tableName="t_topic_param">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints unique="true" nullable="false" />
+			</column>
+		</createTable>
+
+		<loadData encoding="UTF-8" file="config/liquibase/topics.csv"
+			separator=";" tableName="t_topic_param" />
+
+		<createTable tableName="t_teaching_exercise">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="status" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="varchar(50)" />
+			<column name="last_modified_date" type="timestamp" />
+			<column name="subject" type="varchar(255)" />
+			<column name="raw_content" type="varchar" />
+			<column name="validate_at" type="timestamp" />
+			<column name="validator_id" type="bigint" />
+			<column name="topic_id" type="bigint" />
+		</createTable>
+
+		<addForeignKeyConstraint baseColumnNames="validator_id"
+			baseTableName="t_teaching_exercise" constraintName="fk_teaching_exercise_validator_id"
+			referencedColumnNames="id" referencedTableName="t_user" />
+
+		<addForeignKeyConstraint baseColumnNames="topic_id"
+			baseTableName="t_teaching_exercise" constraintName="fk_teaching_exercise_topic_param_topic"
+			referencedColumnNames="id" referencedTableName="t_topic_param" />
+
+		<createTable tableName="t_teaching_exercise_discipline_param_junc">
+			<column name="teaching_exercise_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="discipline_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addPrimaryKey columnNames="teaching_exercise_id, discipline_id"
+			tableName="t_teaching_exercise_discipline_param_junc" />
+
+		<addForeignKeyConstraint baseColumnNames="teaching_exercise_id"
+			baseTableName="t_teaching_exercise_discipline_param_junc"
+			constraintName="fk_teaching_exercise_discipline_param_junc_teaching_exercise_id"
+			referencedColumnNames="id" referencedTableName="t_teaching_exercise" />
+
+		<addForeignKeyConstraint baseColumnNames="discipline_id"
+			baseTableName="t_teaching_exercise_discipline_param_junc"
+			constraintName="fk_teaching_exercise_discipline_param_junc_discipline_Id"
+			referencedColumnNames="id" referencedTableName="t_discipline_param" />
+
+
+		<createTable tableName="t_teaching_exercise_teacher_junc">
+			<column name="teaching_exercise_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addPrimaryKey columnNames="teaching_exercise_id, user_id"
+			tableName="t_teaching_exercise_teacher_junc" />
+
+		<addForeignKeyConstraint baseColumnNames="teaching_exercise_id"
+			baseTableName="t_teaching_exercise_teacher_junc"
+			constraintName="fk_teaching_exercise_teacher_junc_teaching_exercise_id"
+			referencedColumnNames="id" referencedTableName="t_teaching_exercise" />
+
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="t_teaching_exercise_teacher_junc" constraintName="fk_teaching_exercise_teacher_junc_user_id"
+			referencedColumnNames="id" referencedTableName="t_user" />
+
+		<createTable tableName="t_teaching_exercise_student_junc">
+			<column name="teaching_exercise_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addPrimaryKey columnNames="teaching_exercise_id, user_id"
+			tableName="t_teaching_exercise_student_junc" />
+
+		<addForeignKeyConstraint baseColumnNames="teaching_exercise_id"
+			baseTableName="t_teaching_exercise_student_junc"
+			constraintName="fk_teaching_exercise_student_junc_teaching_exercise_id"
+			referencedColumnNames="id" referencedTableName="t_teaching_exercise" />
+
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="t_teaching_exercise_student_junc" constraintName="fk_teaching_exercise_student_junc_user_id"
+			referencedColumnNames="id" referencedTableName="t_user" />
+
+		<createTable tableName="t_marked_to_read_teaching_exercise_user_junc">
+			<column name="teaching_exercise_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addPrimaryKey columnNames="teaching_exercise_id, user_id"
+			tableName="t_marked_to_read_teaching_exercise_user_junc" />
+
+		<addForeignKeyConstraint baseColumnNames="teaching_exercise_id"
+			baseTableName="t_marked_to_read_teaching_exercise_user_junc"
+			constraintName="fk_marked_to_read_teaching_exercise_user_junc_teaching_exercise_id"
+			referencedColumnNames="id" referencedTableName="t_teaching_exercise" />
+
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="t_marked_to_read_teaching_exercise_user_junc"
+			constraintName="fk_marked_to_read_teaching_exercise_user_junc_user_id"
+			referencedColumnNames="id" referencedTableName="t_user" />
+	</changeSet>
+</databaseChangeLog>

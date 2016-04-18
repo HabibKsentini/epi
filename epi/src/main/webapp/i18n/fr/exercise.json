@@ -1,0 +1,38 @@
+{
+	"exercise": 
+	{
+		"title": "Enseignements Pratiques Interdisciplinaires",
+		"subject": "Sujet",
+		"subject.placeholder": "Sujet de l'EPI",
+		"topic": "Thème",
+		"topic.placeholder": "Sélectionnez le thème de l'EPI",
+		"disciplines": "Disciplines",
+		"disciplines.placeholder": "Sélectionnez les disciplines",
+		"status": "Status",
+		"join-doc": "Joindre des documents",
+		"level": "Niveau",
+		"class": "Classe",
+		"classroom.placeholder": "Sélectionnez la classe",
+		"students": "Elèves",
+		"students.placeholder": "Sélectionnez les elèves",
+		"teachers": "Enseignants",
+		"teachers.placeholder": "Sélectionnez les enseignants",
+		"create": 
+		{
+			"title": "Créer un EPI"
+		},
+
+		"progressionStatus": 
+		{
+			"vaildated": "Validé",
+			"waiting": "En attente de validation",
+			"inProgress": "En cours de réalisation"
+		},
+
+		"file": 
+		{
+			"name" : "Nom du fichier", 
+			"creationDate" : "Date de création"
+		}
+	}
+}

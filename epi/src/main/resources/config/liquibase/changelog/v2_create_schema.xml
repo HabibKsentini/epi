@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="autoIncrement" value="true"
+		dbms="mysql,h2,postgresql,oracle" />
+
+	<changeSet id="epi_change_set_v_1.003" author="Habib Ksentini">
+
+		<createTable tableName="t_level_param">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(50)">
+				<constraints unique="true" nullable="false" />
+			</column>
+		</createTable>
+
+		<loadData encoding="UTF-8" file="config/liquibase/levels.csv"
+			separator=";" tableName="t_level_param" />
+
+		<createTable tableName="t_school_year">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(10)">
+				<constraints unique="true" nullable="false" />
+			</column>
+			<column name="active" type="boolean" defaultValueDate="false">
+			</column>
+		</createTable>
+
+		<createTable tableName="t_class">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="level_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="school_year_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="varchar(50)" />
+			<column name="last_modified_date" type="timestamp" />
+		</createTable>
+
+
+		<addForeignKeyConstraint baseColumnNames="level_id"
+			baseTableName="t_class" constraintName="fk_class_level_param_id"
+			referencedColumnNames="id" referencedTableName="t_level_param" />
+
+		<addForeignKeyConstraint baseColumnNames="school_year_id"
+			baseTableName="t_class" constraintName="fk_class_school_year_id"
+			referencedColumnNames="id" referencedTableName="t_school_year" />
+
+
+
+	</changeSet>
+</databaseChangeLog>

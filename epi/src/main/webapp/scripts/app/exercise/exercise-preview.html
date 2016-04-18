@@ -1,0 +1,114 @@
+<div ng-cloak="">
+	<div class="block-section clearfix">
+		<div class="form-group form-actions">
+			<button class="btn btn-sm btn-primary " type="button"
+				ui-sref="exercise-new">
+				<i class="fa fa-arrow-left"></i> <span>Retour</span>
+			</button>
+		</div>
+	</div>
+	<div class="widget">
+		<div class="widget-advanced">
+			<div class="widget-header text-center themed-background-dark">
+
+				<div class="row">
+					<div class="col-sm-3">
+						<address class="text-left">
+							<br>
+							<div ng-repeat="value in ExerciseController.exercise.teachers">
+								<i class="fa fa-graduation-cap"></i> {{value.name}} <br>
+							</div>
+						</address>
+					</div>
+					<div class="col-sm-6">
+						<h3 class="widget-content-light">
+							{{ExerciseController.exercise.subject}} <br> <small>{{ExerciseController.exercise.topic.name}}</small>
+							<br> <small> <span
+								ng-if="ExerciseController.exercise.status == 'IN_PREPARATION'"
+								class="label label-danger ng-scope"
+								translate="exercise.progressionStatus.inProgress">En
+									cours de réalisation</span> <span
+								ng-if="ExerciseController.exercise.status == 'WAITING_FOR_VALIDATION'"
+								class="label label-warning ng-scope"
+								translate="exercise.progressionStatus.waiting">Wainting</span> <span
+								ng-if="ExerciseController.exercise.status == 'VALIDATED'"
+								class="label label-success ng-scope"
+								translate="exercise.progressionStatus.vaildated">Validated</span>
+
+							</small>
+						</h3>
+
+					</div>
+					<div class="col-sm-3">
+						<address class="text-right">
+							<br>
+							<div ng-repeat="value in ExerciseController.exercise.students">
+								<i class="fa fa-user"></i> {{value.name}} <br>
+							</div>
+							<i class="fa fa-calendar"></i>
+							{{ExerciseController.exercise.createdDate | getDate
+							|date:'dd/MM/yyyy'}}
+
+						</address>
+					</div>
+				</div>
+
+			</div>
+			<div class="widget-main widget-main-with-border ">
+				<a class="widget-image-container animation-fadeIn"
+					href="javascript:void(0)"> <span
+					class="widget-icon themed-background"
+					ng-bind="ExerciseController.exercise.group.name"></span>
+				</a>
+				<div ng-bind-html="ExerciseController.exercise.rawContent"</div>
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+	<div class="block-section clearfix">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block full">
+					<div class="block-title">
+						<h2>
+							<span>Fichiers</span>
+						</h2>
+					</div>
+					<table
+						ng-show="ExerciseController.exercise.uploadedFiles.length > 0"
+						style="margin-bottom: 20px;"
+						class="table table-striped table-bordered table-vcenter remove-margin-bottom">
+						<thead>
+							<tr>
+								<th class="text-center"><span
+									translate="exercise.file.name">Name</span></th>
+								<th class="text-center"><span
+									translate="exercise.file.creationDate">Creation Date</span></th>
+								<th class="text-center"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-show="ExerciseController.exercise.uploadedFiles.length"
+								ng-repeat="file in ExerciseController.exercise.uploadedFiles as displayedfiles">
+								<td class="text-center">{{file.name}}</td>
+								<td class="text-center">{{file.createdDate | getDate |
+									date:'dd/MM/yyyy:HH:mm'}}</td>
+								<td class="text-center">
+									<div class="btn-group btn-group-xs">
+										<a class="btn btn-default" href="javascript:void(0)"
+											uib-tooltip="{{'entity.action.download' | translate}}"><i
+											class="fa fa-download"
+											ng-click="ExerciseController.downloadFile(file.id)"></i></a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+</div>

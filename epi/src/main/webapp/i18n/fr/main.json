@@ -1,0 +1,43 @@
+{
+	"main": 
+	{
+		"title": "Bienvenue, EPI !",
+		"subtitle": "Ceci est votre page d'accueil",
+		"logged": 
+		{
+			"message": "Vous êtes connecté en tant que \"{{username}}\"."
+		},
+
+		"question": "Si vous avez des questions à propos de JHipster:",
+		"link": 
+		{
+			"homepage": "Page d'accueil de JHipster",
+			"stackoverflow": "JHipster sur Stack Overflow",
+			"bugtracker": "JHipster bug tracker",
+			"chat": "JHipster public chat room",
+			"contact": "Contactez-nous sur Twitter @java_hipster"
+		},
+
+		"tab": 
+		{
+			"markedAsRead": "EPI marqués pour lecture",
+			"inPreparation": "EPI en cours de rédaction"
+		},
+		
+		"filter": 
+		{
+			"selectTopic": "Sélectionnez un théme"
+		},
+		"epi": 
+		{
+			"subject": "Sujet",
+			"topic": "Thème",
+			"disciplines": "Disciplines", 
+			"status": "Status", 
+			"topicDisciplines" : "Thème & Disciplines"
+		},
+
+		"like": "Si vous aimez JHipster, donnez nous une étoile sur",
+		"github": "Github"
+	}
+}

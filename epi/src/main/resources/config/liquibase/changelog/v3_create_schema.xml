@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet id="epi_change_set_v_1.004" author="Habib Ksentini">
+
+		<createTable tableName="t_class_student_junc">
+			<column name="class_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="student_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addPrimaryKey columnNames="class_id, student_id"
+			tableName="t_class_student_junc" />
+
+		<addForeignKeyConstraint baseColumnNames="class_id"
+			baseTableName="t_class_student_junc" constraintName="fk_class_student_junc_class_id"
+			referencedColumnNames="id" referencedTableName="t_class" />
+
+		<addForeignKeyConstraint baseColumnNames="student_id"
+			baseTableName="t_class_student_junc" constraintName="fk_class_student_junc_student_id"
+			referencedColumnNames="id" referencedTableName="t_user" />
+
+	</changeSet>
+</databaseChangeLog>
