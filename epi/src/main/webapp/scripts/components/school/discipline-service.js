@@ -24,9 +24,18 @@ angular.module('epiApp').factory(
 					'themed-background-spring',
 					'themed-background-dark-autumn',
 					'themed-background-amethyst',
-
-					'themed-background-night', 'themed-background-dark',
+					'themed-background-night', 
+					'themed-background-dark',
 					'themed-background-flatie' ];
+			
+			var images = [  'assets/images/themeImg/health.png',
+							'assets/images/themeImg/arts.png', 
+							'assets/images/themeImg/ecologie.png',
+							'assets/images/themeImg/citizen.png',
+							'assets/images/themeImg/antique.png',
+							'assets/images/themeImg/language.png',
+							'assets/images/themeImg/economie.png',
+							'assets/images/themeImg/techno.png' ];
 
 			return $resource('/topics/:id', {}, {
 				'query' : {
@@ -39,6 +48,7 @@ angular.module('epiApp').factory(
 								.getEmbeddedDataWithout_Links(data);
 						angular.forEach(data, function(value, i) {
 							data[i].color = colors[value.id - 1];
+							data[i].image = images[value.id - 1];
 						});
 						return data;
 					}

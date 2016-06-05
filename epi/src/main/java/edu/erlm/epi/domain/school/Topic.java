@@ -41,11 +41,6 @@ public class Topic implements Serializable {
 	@Size(min = 1, max = 255)
 	private String name;
 
-	@ManyToMany
-	@JoinTable(name = "t_topic_validator_junc", joinColumns = {
-			@JoinColumn(referencedColumnName = "id", name = "topic_id") }, inverseJoinColumns = {
-					@JoinColumn(referencedColumnName = "id", name = "validator_id") })
-	private List<Teacher> validators;
 
 	@Override
 	public String toString() {

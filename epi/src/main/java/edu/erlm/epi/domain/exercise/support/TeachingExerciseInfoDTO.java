@@ -28,7 +28,6 @@ public class TeachingExerciseInfoDTO {
 	private GroupDTO group;
 	private String status;
 	private LocalDateTime validatedAt;
-	private UserDTO validator;
 
 	public static TeachingExerciseInfoDTO valueOf(TeachingExercise teachingExercise) {
 		TeachingExerciseInfoDTO teachingExerciseDTO = new TeachingExerciseInfoDTO();
@@ -39,7 +38,6 @@ public class TeachingExerciseInfoDTO {
 		teachingExerciseDTO.setGroup(GroupDTO.valueOf(teachingExercise.getGroup()));
 		teachingExerciseDTO.setStatus(teachingExercise.getStatus().toString());
 		teachingExerciseDTO.setValidatedAt(teachingExercise.getValidatedAt());
-		teachingExerciseDTO.setValidator(new UserDTO(loadValidator(teachingExercise).getValidator()));
 		return teachingExerciseDTO;
 	}
 
@@ -60,19 +58,6 @@ public class TeachingExerciseInfoDTO {
 		return stringBuilder.toString();
 	}
 	
-	private static TeachingExercise loadValidator(TeachingExercise teachingExercise) {
-		if (teachingExercise.getTopic() == null) {
-			return null;
-		}
-		Teacher validator = null; 
-		if(teachingExercise.getTopic().getValidators() != null){
-			validator = teachingExercise.getTopic().getValidators().get(0); 
-		}else{
-			log.error("no validator for the topic: {}", teachingExercise.getTopic());
-		}
-		teachingExercise.setValidator(validator);
-		return teachingExercise; 
-		
-	}
+	
 
 }

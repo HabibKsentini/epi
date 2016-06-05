@@ -6,7 +6,7 @@
 					<div class="widget-advanced">
 						<div ng-class="topic.color"
 							class="widget-header text-center">
-							<h3 class="widget-content-light" style="font-size: 22px"> 
+							<h3 class="widget-content-light" style="font-size: 20px"> 
 								<a  style="color: #fff"  ui-sref="navigationSearch({id : topic.id})"
 									class="">{{topic.name}}</a>
 							</h3>
@@ -14,8 +14,10 @@
 						<div class="widget-main">
 							<a ui-sref="navigationSearch({id : topic.id})"
 								class="widget-image-container animation-fadeIn animation-hatch"> <span
-								class="widget-icon themed-background-default"><i
-									class="fa fa-globe"></i></span>
+								class="widget-icon themed-background-default">
+								
+								<img ng-src="{{topic.image}}" style="max-height: 42px;"> </img>
+									</span>
 							</a> 
 						</div>
 					</div>

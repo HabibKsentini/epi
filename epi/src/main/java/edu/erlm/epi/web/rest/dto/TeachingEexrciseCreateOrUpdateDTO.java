@@ -40,7 +40,6 @@ public class TeachingEexrciseCreateOrUpdateDTO {
 		teachingExercise.setStudents(getListOfStudent(teachingEexrciseCreateOrUpdateDTO.studentIds));
 		teachingExercise.setTeachers(getListOfTeacher(teachingEexrciseCreateOrUpdateDTO.teacherIds));
 		teachingExercise.setDisciplines(getListOfDiscipline(teachingEexrciseCreateOrUpdateDTO.disciplineIds));
-		setValidator(teachingExercise);
 		return teachingExercise;
 	}
 
@@ -95,19 +94,6 @@ public class TeachingEexrciseCreateOrUpdateDTO {
 		return group;
 	}
 
-	private static TeachingExercise setValidator(TeachingExercise teachingExercise) {
-		if (teachingExercise.getTopic() == null) {
-			return null;
-		}
-		Teacher validator = null; 
-		if(teachingExercise.getTopic().getValidators() != null){
-			validator = teachingExercise.getTopic().getValidators().get(0); 
-		}else{
-			log.error("no validator for the topic: {}", teachingExercise.getTopic());
-		}
-		teachingExercise.setValidator(validator);
-		return teachingExercise; 
-		
-	}
+
 
 }

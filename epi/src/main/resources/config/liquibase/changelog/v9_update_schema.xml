@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	
+	<changeSet id="update user type" author="yassine">
+		<update tableName="t_user">
+		<column name="user_type" value="Student"></column>
+		<where> id &lt; 16 and id &gt; 4</where>
+		</update>
+	</changeSet>
+	
+	
+	<changeSet id="update user type teacher" author="yassine">
+		<update tableName="t_user">
+		<column name="user_type" value="Teacher"></column>
+		<where> id &gt; 15</where>
+		</update>
+	</changeSet>
+</databaseChangeLog>

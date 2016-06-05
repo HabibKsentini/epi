@@ -16,18 +16,12 @@
 					<i class="fa fa-arrow-left"></i> <span translate="entity.action.back">Preview</span>
 				</button>
 				
-				<button
-					ng-if="ExerciseDetailsController.exercise.status == 'WAITING_FOR_VALIDATION' && ExerciseDetailsController.isCurrentUserValidtor"
-					class="btn btn-sm btn-success " type="button"
-					ng-click="ExerciseDetailsController.validate()">
-					<i class="fa fa-paper-plane"></i> <span> Valider</span>
-				</button>
-
+				
 				<button has-authority="ROLE_TEACHER"
 					ng-if="ExerciseDetailsController.exercise.status == 'IN_PREPARATION'"
 					class="btn btn-sm btn-success " type="button"
-					ng-click="ExerciseDetailsController.goToWaitingForValidation()">
-					<i class="fa fa-paper-plane"></i> <span> Soumettre</span>
+					ng-click="ExerciseDetailsController.validate()">
+					<i class="fa fa-paper-plane"></i> <span> Publier</span>
 				</button>
 
 				<button

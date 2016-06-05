@@ -40,7 +40,6 @@ public class TeachingExerciseDTO {
 	
 	private ZonedDateTime createdDate;
 	
-	private UserDTO validator ; 
 	
 	private boolean isMarkedForRead = false; 
 
@@ -60,22 +59,6 @@ public class TeachingExerciseDTO {
 		this.isMarkedForRead = teachingExercise.isMarkedForReadByTheCurrentUser(); 
 	}
 	
-	public TeachingExerciseDTO(TeachingExercise teachingExercise, User validator) {
-		super();
-		this.status = teachingExercise.getStatus();
-		this.id = teachingExercise.getId();
-		this.subject = teachingExercise.getSubject();
-		this.rawContent = teachingExercise.getRawContent();
-		this.topic = teachingExercise.getTopic();
-		this.level = teachingExercise.getGroup() != null ? teachingExercise.getGroup().getLevel() : null;
-		this.group = teachingExercise.getGroup();
-		this.students = teachingExercise.getStudents();
-		this.teachers = teachingExercise.getTeachers();
-		this.disciplines = teachingExercise.getDisciplines(); 
-		this.createdDate = teachingExercise.getCreatedDate(); 
-		this.isMarkedForRead = teachingExercise.isMarkedForReadByTheCurrentUser(); 
-		this.validator = new UserDTO(validator); 
-	}
 	
 	
 	

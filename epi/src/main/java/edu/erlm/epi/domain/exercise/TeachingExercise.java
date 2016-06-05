@@ -119,9 +119,6 @@ public class TeachingExercise extends AbstractAuditingEntity implements Serializ
 	@ManyToOne
 	private Group group;
 
-	@JoinColumn(name = "validator_id")
-	@ManyToOne
-	private User validator;
 
 	@Column(name = "validate_at")
 	private LocalDateTime validatedAt;

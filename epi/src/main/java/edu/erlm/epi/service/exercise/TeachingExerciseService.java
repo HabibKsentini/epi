@@ -17,7 +17,6 @@ import edu.erlm.epi.domain.exercise.File;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.exercise.support.TeachingExerciseInfoDTO;
 import edu.erlm.epi.domain.school.Teacher;
-import edu.erlm.epi.exception.TechnicalException;
 import edu.erlm.epi.repository.SearchSpecification;
 import edu.erlm.epi.repository.UserRepository;
 import edu.erlm.epi.repository.exercise.FileRepository;
@@ -60,7 +59,7 @@ public class TeachingExerciseService {
 		teachingExerciseDTOs = TeachingExerciseInfoDTO.valueOf(teachingExercises);
 		return teachingExerciseDTOs;
 	}
-
+/*
 	@Transactional(readOnly = true)
 	public List<TeachingExerciseInfoDTO> getListExerciseWaitingForValidation() {
 		List<TeachingExerciseInfoDTO> teachingExerciseDTOs = new ArrayList<>();
@@ -91,7 +90,7 @@ public class TeachingExerciseService {
 		}
 		return teachingExerciseDTOs;
 	}
-
+*/
 	@Transactional(readOnly = true)
 	public Page<TeachingExerciseInfoDTO> search(TeachingExercise teachingExercise, Pageable pageable) {
 		SearchSpecification<TeachingExercise> teachingExerciseSearchSpec = new SearchSpecification<>();
@@ -104,8 +103,8 @@ public class TeachingExerciseService {
 	@Transactional(readOnly = true)
 	public List<TeachingExerciseInfoDTO> getListExercise() {
 		List<TeachingExerciseInfoDTO> teachingExercises = getListExerciseInPreparation();
-		teachingExercises.addAll(getListExerciseWaitingForValidation());
-		teachingExercises.addAll(getListExerciseWaitingForCurrentUserValidation());
+//		teachingExercises.addAll(getListExerciseWaitingForValidation());
+//		teachingExercises.addAll(getListExerciseWaitingForCurrentUserValidation());
 		return teachingExercises;
 	}
 
@@ -126,12 +125,12 @@ public class TeachingExerciseService {
 			}
 		}
 
-		if (teachingExercise.getTopic() != null) {
-			validator = teachingExercise.getTopic().getValidators().get(0);
-		} else {
-			throw new TechnicalException("no validator for the topic: " + teachingExercise.getTopic(), null);
-		}
-		TeachingExerciseDTO teachingExerciseDTO = new TeachingExerciseDTO(teachingExercise, validator);
+//		if (teachingExercise.getTopic() != null) {
+//			validator = teachingExercise.getTopic().getValidators().get(0);
+//		} else {
+//			throw new TechnicalException("no validator for the topic: " + teachingExercise.getTopic(), null);
+//		}
+		TeachingExerciseDTO teachingExerciseDTO = new TeachingExerciseDTO(teachingExercise);
 		return teachingExerciseDTO;
 	}
 
@@ -145,8 +144,7 @@ public class TeachingExerciseService {
 	public void validate(Long teachingExerciseId) {
 		TeachingExercise te = teachingExerciseRepository.findOne(teachingExerciseId);
 		User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-		te.setValidator(user);
-		TeachingExercise.Status vaildateStatus = TeachingExercise.Status.VALIDATED;
+			TeachingExercise.Status vaildateStatus = TeachingExercise.Status.VALIDATED;
 		te.setStatus(vaildateStatus);
 		te.setValidatedAt(LocalDateTime.now());
 		teachingExerciseRepository.save(te);
