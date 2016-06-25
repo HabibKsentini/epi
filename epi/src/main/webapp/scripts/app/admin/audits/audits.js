@@ -11,7 +11,7 @@ angular.module('epiApp')
                     pageTitle: 'audits.title'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/admin/audits/audits.html',
                         controller: 'AuditsController'
                     }

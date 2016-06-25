@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('epiApp')
-    .controller('PasswordController', function ($scope, Auth, Principal) {
+    .controller('PasswordController', function ($scope, Auth, Principal, $uibModalInstance) {
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
@@ -19,10 +19,19 @@ angular.module('epiApp')
                 Auth.changePassword($scope.password).then(function () {
                     $scope.error = null;
                     $scope.success = 'OK';
+                    if($uibModalInstance){
+                    	$uibModalInstance.dismiss('cancel');
+                    }
                 }).catch(function () {
                     $scope.success = null;
                     $scope.error = 'ERROR';
                 });
             }
         };
+        
+        
+        $scope.clear = function(){
+        	$uibModalInstance.dismiss('cancel');
+        }
+        
     });

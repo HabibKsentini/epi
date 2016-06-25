@@ -5,7 +5,7 @@ angular.module('epiApp').controller('UserManagementDialogController',
         function($scope, $stateParams, $uibModalInstance, entity, User, Language) {
 
         $scope.user = entity;
-        $scope.authorities = ["ROLE_USER", "ROLE_ADMIN"];
+        $scope.authorities = ["ROLE_TEACHER", "ROLE_ADMIN", "ROLE_STUDENT"];
         Language.getAll().then(function (languages) {
             $scope.languages = languages;
         });
@@ -20,6 +20,8 @@ angular.module('epiApp').controller('UserManagementDialogController',
 
         $scope.save = function () {
             $scope.isSaving = true;
+            $scope.user.createdDate = null; 
+            $scope.user.lastModifiedDate = null; 
             if ($scope.user.id != null) {
                 User.update($scope.user, onSaveSuccess, onSaveError);
             } else {

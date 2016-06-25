@@ -125,7 +125,8 @@
 			"preview": "Aperçu", 
 			"upload": "Upload",
 			"download": "Télécharger",
-			"search": "Chercher"
+			"search": "Chercher", 
+			"reset": "Réinitialiser"
 		},
 
 		"detail": 

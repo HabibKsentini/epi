@@ -16,3 +16,21 @@ angular.module('epiApp')
                 'delete':{ method:'DELETE'}
             });
         });
+
+angular.module('epiApp')
+.factory('SchoolYear', function ($resource) {
+    return $resource('api/schoolYear/:id', {}, {
+            'query': {method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            },
+            'save': { method:'POST' },
+            'update': { method:'PUT' },
+            'delete':{ method:'DELETE'}
+        });
+    });
+

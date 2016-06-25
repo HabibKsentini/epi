@@ -11,7 +11,7 @@ angular.module('epiApp')
                     pageTitle: 'metrics.title'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/admin/metrics/metrics.html',
                         controller: 'MetricsController'
                     }

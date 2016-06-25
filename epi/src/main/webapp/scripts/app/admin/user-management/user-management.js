@@ -11,7 +11,7 @@ angular.module('epiApp')
                     pageTitle: 'user-management.home.title'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/admin/user-management/user-management.html',
                         controller: 'UserManagementController'
                     }
@@ -19,6 +19,7 @@ angular.module('epiApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('user.management');
+                        $translatePartialLoader.addPart('password');
                         return $translate.refresh();
                     }]
                 }
@@ -27,11 +28,11 @@ angular.module('epiApp')
                 parent: 'admin',
                 url: '/user/:login',
                 data: {
-                    authorities: ['ROLE_ADMIN'],
+                    authorities: [],
                     pageTitle: 'user-management.detail.title'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/admin/user-management/user-management-detail.html',
                         controller: 'UserManagementDetailController'
                     }
@@ -47,7 +48,7 @@ angular.module('epiApp')
                 parent: 'user-management',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_ADMIN'],
+                	 authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -75,7 +76,7 @@ angular.module('epiApp')
                 parent: 'user-management',
                 url: '/{login}/edit',
                 data: {
-                    authorities: ['ROLE_ADMIN'],
+                	 authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -98,7 +99,7 @@ angular.module('epiApp')
                 parent: 'user-management',
                 url: '/{login}/delete',
                 data: {
-                    authorities: ['ROLE_ADMIN'],
+                	 authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -110,6 +111,24 @@ angular.module('epiApp')
                                 return User.get({login : $stateParams.login});
                             }]
                         }
+                    }).result.then(function(result) {
+                        $state.go('user-management', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    })
+                }]
+            }).state('user-management.password', {
+                parent: 'user-management',
+                url: '/{login}/password',
+                data: {
+                	 authorities: ['ROLE_ADMIN'],
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'scripts/app/admin/user-management/user-management-password-dialog.html',
+                        controller: 'PasswordController',
+                        size: 'md',
+                       
                     }).result.then(function(result) {
                         $state.go('user-management', null, { reload: true });
                     }, function() {

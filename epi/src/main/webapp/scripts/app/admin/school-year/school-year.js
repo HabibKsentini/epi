@@ -3,24 +3,24 @@
 angular.module('epiApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('settings', {
-                parent: 'account',
-                url: '/settings',
+            .state('school-year-management', {
+                parent: 'admin',
+                url: '/school-year-management',
                 data: {
-                    authorities: ['ROLE_TEACHER', 'ROLE_ADMIN'],
-                    pageTitle: 'global.menu.account.settings'
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: 'school-year.home.title'
                 },
                 views: {
                     'content@site': {
-                        templateUrl: 'scripts/app/account/settings/settings.html',
-                        controller: 'SettingsController'
+                        templateUrl: 'scripts/app/admin/school-year/school-year.html',
+                        controller: 'SchoolYearManagementController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('settings');
+                        $translatePartialLoader.addPart('user.management');
                         return $translate.refresh();
                     }]
                 }
-            });
+            })
     });

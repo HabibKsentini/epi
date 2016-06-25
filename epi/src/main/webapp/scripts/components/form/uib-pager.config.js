@@ -2,7 +2,7 @@
 
 angular.module('epiApp')
     .config(function (uibPagerConfig) {
-        uibPagerConfig.itemsPerPage = 20;
+        uibPagerConfig.itemsPerPage = 10;
         uibPagerConfig.previousText = '«';
         uibPagerConfig.nextText = '»';
     });

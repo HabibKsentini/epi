@@ -7,11 +7,11 @@ angular.module('epiApp')
                 parent: 'account',
                 url: '/password',
                 data: {
-                    authorities: ['ROLE_USER'],
+                	authorities: ['ROLE_TEACHER', 'ROLE_ADMIN'],
                     pageTitle: 'global.menu.account.password'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/account/password/password.html',
                         controller: 'PasswordController'
                     }
