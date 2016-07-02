@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet id="epi_change_add_medialink" author="yassine">
+		
+		<createTable tableName="t_media_link">
+			<column name="id" type="bigint" autoIncrement="${autoIncrement}">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="media_url" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="media_description" type="varchar(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="created_by" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_modified_by" type="varchar(50)" />
+			<column name="last_modified_date" type="timestamp" />
+			<column name="created_date" type="timestamp" defaultValueDate="${now}">
+				<constraints nullable="false" />
+			</column>
+			<column name="teaching_exercise_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+
+		<addForeignKeyConstraint baseColumnNames="teaching_exercise_id"
+			baseTableName="t_media_link"
+			constraintName="fk_media_link_teaching_exercise_id"
+			referencedColumnNames="id" referencedTableName="t_teaching_exercise" />
+
+
+	</changeSet>
+</databaseChangeLog>
