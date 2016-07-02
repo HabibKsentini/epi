@@ -20,6 +20,7 @@ import edu.erlm.epi.domain.school.Teacher;
 import edu.erlm.epi.repository.SearchSpecification;
 import edu.erlm.epi.repository.UserRepository;
 import edu.erlm.epi.repository.exercise.FileRepository;
+import edu.erlm.epi.repository.exercise.MediaLinkRepository;
 import edu.erlm.epi.repository.exercise.TeachingExerciseRepository;
 import edu.erlm.epi.repository.school.TopicRepository;
 import edu.erlm.epi.security.SecurityUtils;
@@ -42,6 +43,9 @@ public class TeachingExerciseService {
 
 	@Autowired
 	FileRepository fileRepository;
+	
+	@Autowired
+	MediaLinkRepository mediaLinkRepository;
 
 	@Transactional(readOnly = true)
 	public List<TeachingExerciseInfoDTO> getListExerciseInPreparation() {
@@ -114,7 +118,8 @@ public class TeachingExerciseService {
 		teachingExercise.getStudents().size();
 		teachingExercise.getTeachers().size();
 		teachingExercise.getDisciplines().size();
-		Teacher validator = null;
+		teachingExercise.getMedias().addAll(mediaLinkRepository.findByTeachingExerciseId(id));
+//		Teacher validator = null;
 
 		if (teachingExercise.getFollowers().size() > 0) {
 			List<User> followers = teachingExercise.getFollowers().stream()

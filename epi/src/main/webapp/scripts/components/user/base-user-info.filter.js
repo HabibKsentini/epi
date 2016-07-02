@@ -21,7 +21,7 @@ angular.module('epiApp')
     return function (input, scope) {
     	var name  = ""; 
         if (input != null){
-           name = input.firstName + " " + input.lastName; 
+           name = input.lastName + " " + input.firstName; 
         }
         return name;
     }
@@ -46,10 +46,30 @@ angular.module('epiApp')
 angular.module('epiApp') 
 .filter('getDate', function ($filter) {
     return function (localZoneDate, scope) {
-    	var dateOut; 
+    	var dateOut = null; 
         if (localZoneDate != null){
         	 dateOut = new Date(localZoneDate.year, localZoneDate.monthValue -1, localZoneDate.dayOfMonth, localZoneDate.hour, localZoneDate.minute, localZoneDate.second)
         }
         return dateOut;
     }
 });
+
+angular.module('epiApp')
+.filter('userType', function () {
+    return function (authorities, scope) {
+    	var type = ''; 
+        if (authorities != null){
+            if (authorities.indexOf('ROLE_ADMIN') != -1){
+            	 type = "Admin";
+            }if (authorities.indexOf('ROLE_TEACHER') != -1){
+        	   type = "Enseignant";
+           }if(authorities.indexOf('ROLE_STUDENT') != -1){
+        	   type = "Élève";
+           }
+        }
+        return type;
+    }
+});
+
+
+

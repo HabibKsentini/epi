@@ -17,6 +17,7 @@
 		"students.placeholder": "Sélectionnez les elèves",
 		"teachers": "Enseignants",
 		"teachers.placeholder": "Sélectionnez les enseignants",
+		"medias": "medias",
 		"create": 
 		{
 			"title": "Créer un EPI"
@@ -34,5 +35,6 @@
 			"name" : "Nom du fichier", 
 			"creationDate" : "Date de création"
 		}
+		
 	}
 }

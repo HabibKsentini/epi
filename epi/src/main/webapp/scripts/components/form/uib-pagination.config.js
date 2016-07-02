@@ -2,7 +2,7 @@
 
 angular.module('epiApp')
     .config(function (uibPaginationConfig) {
-        uibPaginationConfig.itemsPerPage = 20;
+        uibPaginationConfig.itemsPerPage = 10;
         uibPaginationConfig.maxSize = 5;
         uibPaginationConfig.boundaryLinks = true;
         uibPaginationConfig.firstText = '«';

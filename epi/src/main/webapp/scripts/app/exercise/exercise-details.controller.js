@@ -2,7 +2,7 @@
 
 angular.module('epiApp').controller(
 		'ExerciseDetailsController',
-		function(Exercise, $stateParams, File, Principal,
+		function($scope, $sce, Exercise, $stateParams, File, Principal,
 				ConfirmationDialogService, $state, Topic) {
 
 			var vm = this;
@@ -14,6 +14,12 @@ angular.module('epiApp').controller(
 			vm.goToWaitingForValidation = goToWaitingForValidation
 			vm.remove = remove;
 			vm.setMarkforReadToTrue = setMarkforReadToTrue; 
+			
+			
+			
+				 function trustSrcMedia(src) {
+			    return $sce.trustAsResourceUrl(src);
+			  }
 			
 			function setMarkforReadToTrue(){
 				Exercise.setMarkForRead(vm.exercise.id); 
@@ -45,7 +51,8 @@ angular.module('epiApp').controller(
 					vm.exercise = data
 					vm.topicColor = getTopicColors(data.topic.id); 
 					loadFiles(id);
-					isValidator();
+				//	isValidator();
+					loadMediaURL(data.medias);
 				});
 			}
 
@@ -55,13 +62,13 @@ angular.module('epiApp').controller(
 				});
 			}
 
-			function isValidator() {
-				Principal.identity(false).then(function(identity) {
-					if (identity.login == vm.exercise.validator.login) {
-						vm.isCurrentUserValidtor = true;
-					}
-				});
-			}
+//			function isValidator() {
+//				Principal.identity(false).then(function(identity) {
+//					if (identity.login == vm.exercise.validator.login) {
+//						vm.isCurrentUserValidtor = true;
+//					}
+//				});
+//			}
 
 			function downloadFile(fileId) {
 				File.download(fileId).then(function(success) {
@@ -83,5 +90,16 @@ angular.module('epiApp').controller(
 						});
 
 			}
-
+			
+			function loadMediaURL(medias) {
+				var urls = [];
+				for (var i = 0; i < medias.length; i++) {
+					urls.push({domain: $sce.trustAsResourceUrl(medias[i].mediaURL),description: $sce.trustAsResourceUrl(medias[i].mediaDescription)}); 
+				}
+ 			    $scope.urls = urls;
+			}
+			    
+			
 		});
+
+

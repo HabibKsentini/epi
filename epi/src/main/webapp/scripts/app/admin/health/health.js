@@ -11,7 +11,7 @@ angular.module('epiApp')
                     pageTitle: 'health.title'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/admin/health/health.html',
                         controller: 'HealthController'
                     }

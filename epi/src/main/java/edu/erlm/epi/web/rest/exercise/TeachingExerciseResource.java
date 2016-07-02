@@ -19,14 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.erlm.epi.domain.User;
 import edu.erlm.epi.domain.exercise.File;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.exercise.support.TeachingExerciseInfoDTO;
-import edu.erlm.epi.repository.UserRepository;
 import edu.erlm.epi.repository.exercise.FileRepository;
 import edu.erlm.epi.repository.exercise.TeachingExerciseRepository;
-import edu.erlm.epi.security.SecurityUtils;
 import edu.erlm.epi.service.UserService;
 import edu.erlm.epi.service.exercise.TeachingExerciseService;
 import edu.erlm.epi.service.util.FileUtil;

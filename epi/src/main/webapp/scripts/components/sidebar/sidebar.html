@@ -15,33 +15,64 @@
 				</div>
 				<div class="sidebar-user-name">{{userName}}</div>
 				<div class="sidebar-user-links">
-					<a href="page_ready_user_profile.php" data-toggle="tooltip" ng-hide="true"
-						data-placement="bottom" title="" data-original-title="Profile"><i
-						class="glyphicon glyphicon-user"></i></a> <a ng-hide="true"
-						href="page_ready_inbox.php" data-toggle="tooltip"
-						data-placement="bottom" title="" data-original-title="Messages"><i
-						class="glyphicon glyphicon-wrench"></i></a><a href="" ng-click="logout()"
-						data-toggle="tooltip" data-placement="bottom" title=""
-						data-original-title="Logout"><i
+					<a href="" ui-sref="settings" ui-sref-active="active"> <i
+						class="glyphicon glyphicon-user"></i></a> <a ui-sref="password"
+						href="" ui-sref-active="active"><i
+						class="glyphicon glyphicon-wrench"></i></a> <a href=""
+						ng-click="logout()" ui-sref-active="active"><i
 						class="glyphicon glyphicon-log-out"></i></a>
 				</div>
 			</div>
 
 			<ul class="sidebar-nav">
-				<li><a ui-sref-active="active" ui-sref="home" href=""><i
+				<li><a ui-sref-active="active" ui-sref="home"
+					href="javascript:void(0)" uib-dropdown-toggle ng-click="check(1)"><i
 						class="glyphicon glyphicon-home sidebar-nav-icon"></i><span
 						class="sidebar-nav-mini-hide" translate="global.menu.home">Home</span></a>
 				</li>
-				
 
-				<li><a ui-sref-active="active" ui-sref="navigation" ><i
+
+				<li><a ui-sref-active="active" ui-sref="navigation"
+					data-toggle="collapse" href="javascript:void(0)"
+					uib-dropdown-toggle ng-click="check(2)"><i
 						class=" glyphicon glyphicon-briefcase sidebar-nav-icon"></i><span
 						class="sidebar-nav-mini-hide"
 						translate="global.menu.navigation.main">Navigation par
 							Th�me</span></a></li>
 
 
-				
+				<li has-authority="ROLE_ADMIN"><a ui-sref-active="active" href="" class="active"
+					data-toggle="collapse" href="javascript:void(0)"
+					uib-dropdown-toggle ng-click="check(3)"> <i
+						ng-class="collapseVar!=3 ? 'glyphicon-menu-left' : 'glyphicon-menu-down'"
+						class="glyphicon  sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+						<i class="glyphicon glyphicon-tower sidebar-nav-icon"></i><span
+						class="sidebar-nav-mini-hide" translate="global.menu.admin.main">Administration</span></a>
+
+
+					<ul class="collapse" uib-collapse="collapseVar!=3">
+
+						<li ui-sref-active="active"><a ui-sref="user-management"><span
+								class="glyphicon glyphicon-user"></span> &#xA0;<span
+								translate="global.menu.admin.user-management">User
+									management</span></a></li>
+						<li ui-sref-active="active"><a ui-sref="metrics"><span
+								class="glyphicon glyphicon-dashboard"></span> &#xA0;<span
+								translate="global.menu.admin.metrics">Metrics</span></a></li>
+
+						<li ui-sref-active="active"><a ui-sref="health"><span
+								class="glyphicon glyphicon-heart"></span> &#xA0;<span
+								translate="global.menu.admin.health">Health</span></a></li>
+
+						<li ui-sref-active="active"><a ui-sref="audits"><span
+								class="glyphicon glyphicon-bell"></span> &#xA0;<span
+								translate="global.menu.admin.audits">Audits</span></a></li>
+
+
+					</ul></li>
+
+
+
 
 			</ul>
 		</div>

@@ -4,7 +4,7 @@ angular
 		.module('epiApp')
 		.controller(
 				'MainController',
-				function($scope, Principal, Exercise) {
+				function($scope, Principal, Exercise,$sce) {
 					$scope.exerciseWithStatusInPrepartionAndWaitingForValidation = [];
 					$scope.markedForReadExercies = []; 
 					
@@ -32,4 +32,6 @@ angular
 							$scope.isAuthenticated = Principal.isAuthenticated;
 						});
 					}
+					
+					
 				});

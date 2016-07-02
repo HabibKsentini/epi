@@ -1,11 +1,15 @@
 package edu.erlm.epi.service;
 
 import java.time.LocalDate;
+
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import javax.inject.Inject;
 
@@ -21,6 +25,7 @@ import edu.erlm.epi.domain.User;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.repository.AuthorityRepository;
 import edu.erlm.epi.repository.PersistentTokenRepository;
+import edu.erlm.epi.repository.SearchSpecification;
 import edu.erlm.epi.repository.UserRepository;
 import edu.erlm.epi.repository.exercise.TeachingExerciseRepository;
 import edu.erlm.epi.security.SecurityUtils;
@@ -169,7 +174,7 @@ public class UserService {
             String encryptedPassword = passwordEncoder.encode(password);
             u.setPassword(encryptedPassword);
             userRepository.save(u);
-            log.debug("Changed password for User: {}", u);
+            log.debug("Changed password for User: {}", u.getLogin());
         });
     }
 
@@ -204,6 +209,13 @@ public class UserService {
         User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).get();
         user.getAuthorities().size(); // eagerly load the association
         return user;
+    }
+    
+    public Page<User> search(User userSearchModel, Pageable pageable){
+    	SearchSpecification<User> userSearchSpec = new SearchSpecification<>();
+		Specification<User> spec = userSearchSpec.find(userSearchModel);
+		Page<User> page = userRepository.findAll(spec, pageable); 
+		return page;
     }
 
     /**

@@ -1,6 +1,7 @@
 package edu.erlm.epi.web.rest;
 
 import java.net.URI;
+
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +37,7 @@ import edu.erlm.epi.security.AuthoritiesConstants;
 import edu.erlm.epi.service.MailService;
 import edu.erlm.epi.service.UserService;
 import edu.erlm.epi.web.rest.dto.ManagedUserDTO;
+import edu.erlm.epi.web.rest.dto.UserDTO;
 import edu.erlm.epi.web.rest.util.HeaderUtil;
 import edu.erlm.epi.web.rest.util.PaginationUtil;
 
@@ -139,11 +141,6 @@ public class UserResource {
 			throws URISyntaxException {
 		log.debug("REST request to update User : {}", managedUserDTO);
 		Optional<User> existingUser = userRepository.findOneByEmail(managedUserDTO.getEmail());
-		if (existingUser.isPresent() && (!existingUser.get().getId().equals(managedUserDTO.getId()))) {
-			return ResponseEntity.badRequest()
-					.headers(HeaderUtil.createFailureAlert("user-management", "emailexists", "E-mail already in use"))
-					.body(null);
-		}
 		existingUser = userRepository.findOneByLogin(managedUserDTO.getLogin());
 		if (existingUser.isPresent() && (!existingUser.get().getId().equals(managedUserDTO.getId()))) {
 			return ResponseEntity.badRequest()
@@ -154,7 +151,6 @@ public class UserResource {
 			user.setLogin(managedUserDTO.getLogin());
 			user.setFirstName(managedUserDTO.getFirstName());
 			user.setLastName(managedUserDTO.getLastName());
-			user.setEmail(managedUserDTO.getEmail());
 			user.setActivated(managedUserDTO.isActivated());
 			user.setLangKey(managedUserDTO.getLangKey());
 			Set<Authority> authorities = user.getAuthorities();
@@ -174,8 +170,8 @@ public class UserResource {
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<ManagedUserDTO>> getAllUsers(Pageable pageable) throws URISyntaxException {
-		Page<User> page = userRepository.findAll(pageable);
+	public ResponseEntity<List<ManagedUserDTO>> getAllUsers(User userSearchModel, Pageable pageable) throws URISyntaxException {
+		Page<User> page = userService.search(userSearchModel, pageable);
 		List<ManagedUserDTO> managedUserDTOs = page.getContent().stream().map(user -> new ManagedUserDTO(user))
 				.collect(Collectors.toList());
 		HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");

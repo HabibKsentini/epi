@@ -4,7 +4,7 @@ angular.module('epiApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprec
     'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
     'ui.bootstrap', 'ngAnimate', 'ui.router', 'anim-in-out', 'infinite-scroll', 'angular-loading-bar', 'localytics.directives', 'ngDropzone', 'textAngular', 'hyperResource'])
 
-    .run(function ($rootScope, $location, $window, $http, $state,$translate, Language, Auth, Principal, ENV, VERSION) {
+    .run(function ($rootScope, $location, $window, $http, $state,$translate, Language, Auth, Principal, ENV, VERSION,$sce) {
         // update the window title using params in the following
         // precendence
         // 1. titleKey parameter
@@ -129,4 +129,6 @@ angular.module('epiApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprec
         tmhDynamicLocaleProvider.useCookieStorage();
         tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
         
+
     });
+	

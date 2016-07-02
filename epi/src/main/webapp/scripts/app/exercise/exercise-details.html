@@ -103,11 +103,22 @@
 					class="widget-icon themed-background"
 					ng-bind="ExerciseDetailsController.exercise.group.name"></span>
 				</a>
-				<div ng-bind-html="ExerciseDetailsController.exercise.rawContent"</div>
+
+			<uib-accordion> <uib-accordion-group
+					style="margin-top:-40px; hight:20px;"	ng-show="urls.length === 0" ng-init="isOpen = true" is-open="isOpen" heading="Videos">
+			<div class="panel-body" style="padding: unset;" >
+   				<span  ng-repeat="url in urls">      
+        			<iframe style="width: 49%;" ng-src="{{ url.domain }}" title="">{{ url.description }}</iframe>
+        		</span>
 			</div>
+			</uib-accordion-group></uib-accordion>
+				<div ng-bind-html="ExerciseDetailsController.exercise.rawContent">
+			</div>
+
+   			
+   				
 		</div>
 	</div>
-
 
 </div>
 

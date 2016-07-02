@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import edu.erlm.epi.domain.User;
+import edu.erlm.epi.domain.exercise.MediaLink;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.exercise.TeachingExercise.Status;
 import edu.erlm.epi.domain.school.Discipline;
@@ -38,6 +39,8 @@ public class TeachingExerciseDTO {
 
 	private List<Teacher> teachers;
 	
+	private List<MediaLink> medias;
+	
 	private ZonedDateTime createdDate;
 	
 	
@@ -57,6 +60,7 @@ public class TeachingExerciseDTO {
 		this.disciplines = teachingExercise.getDisciplines(); 
 		this.createdDate = teachingExercise.getCreatedDate(); 
 		this.isMarkedForRead = teachingExercise.isMarkedForReadByTheCurrentUser(); 
+		this.medias = teachingExercise.getMedias();
 	}
 	
 	

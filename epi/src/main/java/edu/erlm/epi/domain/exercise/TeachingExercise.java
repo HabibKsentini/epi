@@ -2,6 +2,7 @@ package edu.erlm.epi.domain.exercise;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -96,6 +98,11 @@ public class TeachingExercise extends AbstractAuditingEntity implements Serializ
 			@JoinColumn(referencedColumnName = "id", name = "teaching_exercise_id") }, inverseJoinColumns = {
 					@JoinColumn(referencedColumnName = "id", name = "user_id") })
 	private List<User> followers;
+	
+//	@OneToMany
+//	@JoinColumn(referencedColumnName = "id", name = "teaching_exercise_id")
+	@Transient 
+	private List<MediaLink> medias =new ArrayList<MediaLink>();
 
 	@ManyToMany
 	@JoinTable(name = "t_teaching_exercise_discipline_param_junc", joinColumns = {
@@ -162,13 +169,15 @@ public class TeachingExercise extends AbstractAuditingEntity implements Serializ
 			return group;
 		case "status":
 			return status;
+		case "medias":
+			return medias;
 		}
 		return null;
 	}
 
 	@Override
 	public List<String> getAttributes() {
-		String[] attributes = { "topic", "subject", "group", "status" };
+		String[] attributes = { "topic", "subject", "group", "status", "medias" };
 		return Arrays.asList(attributes);
 	}
 

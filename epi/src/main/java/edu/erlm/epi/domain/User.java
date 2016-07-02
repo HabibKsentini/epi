@@ -1,22 +1,39 @@
 package edu.erlm.epi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import edu.erlm.epi.domain.exercise.TeachingExercise;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.time.ZonedDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import edu.erlm.epi.domain.exercise.TeachingExercise;
+import edu.erlm.epi.repository.Searchable;
 
 /**
  * A user.
@@ -26,7 +43,7 @@ import java.time.ZonedDateTime;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class User extends AbstractAuditingEntity implements Serializable {
+public class User extends AbstractAuditingEntity implements Serializable, Searchable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -234,4 +251,28 @@ public class User extends AbstractAuditingEntity implements Serializable {
 				+ '\'' + ", email='" + email + '\'' + ", activated='" + activated + '\'' + ", langKey='" + langKey
 				+ '\'' + ", activationKey='" + activationKey + '\'' + "}";
 	}
+	
+	@Override
+	@Transient
+	public Object get(String attributeName) {
+		switch (attributeName) {
+		case "login":
+			return login;
+		case "firstName":
+			return firstName;
+		case "lastName":
+			return lastName;
+		case "authorities":
+			return authorities;
+		}
+		return null;
+	}
+
+	@Override
+	public List<String> getAttributes() {
+		String[] attributes = { "login", "firstName", "lastName", "authorities" };
+		return Arrays.asList(attributes);
+	}
+
+
 }

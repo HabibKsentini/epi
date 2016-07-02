@@ -11,7 +11,7 @@ angular.module('epiApp')
                     pageTitle: 'error.title'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/error/error.html'
                     }
                 },
@@ -29,7 +29,7 @@ angular.module('epiApp')
                     authorities: []
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/error/accessdenied.html'
                     }
                 },

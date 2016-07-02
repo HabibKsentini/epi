@@ -7,11 +7,11 @@ angular.module('epiApp')
                 parent: 'account',
                 url: '/settings',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_TEACHER', 'ROLE_ADMIN'],
                     pageTitle: 'global.menu.account.settings'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/account/settings/settings.html',
                         controller: 'SettingsController'
                     }
