@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>
 	<div class="block full">
 		<div class="block-title">
@@ -164,3 +165,171 @@
 	</div>
 	<div class="text-center"></div>
 </div>
+=======
+<div>
+	<div class="block full">
+		<div class="block-title">
+			<h2>
+				<span>Critères de recherche</span>
+			</h2>
+		</div>
+		<form ng-submit="loadAll()" name="form" role="form" novalidate>
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="form-group">
+						<label for="inputWebsite" class="control-label"
+							translate="user-management.profiles">Profiles</label>
+						<div class="input-icon right">
+
+
+							<select chosen multiple allow-single-deselect="true"
+								ng-model="userSearchModel.authorities"
+								data-placeholder="Sélectionnez un  profile"
+								ng-options="o as o | userType for o in authorities"
+								class="form-control select-chosen">
+							</select> 
+
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-3 col-sm-6">
+					<div class="form-group">
+						<label for="inputWebsite" class="control-label"> Nom</label>
+						<div class="input-icon right">
+							<input id="inputLastName" type="text"
+								ng-model="userSearchModel.lastName" class="form-control">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="form-group">
+						<label for="inputFirstName" class="control-label">Prénom</label>
+						<div class="input-icon right">
+							<input id="inputWebsite" type="text"
+								ng-model="userSearchModel.firstName" class="form-control">
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+			<div class="form-actions text-right ">
+				<button type="submit" class="btn btn-sm btn-primary"
+					title="{{'entity.action.search' | translate}}">
+					<span class="glyphicon glyphicon-search"></span><span
+						translate="entity.action.search">Chercher</span>
+				</button>
+				<button type="button" ng-click="resetUserSearchModel()"
+					class="btn btn-sm btn-warning"
+					title="{{'entity.action.reset' | translate}}">
+					<span class="glyphicon glyphicon-refresh"></span>
+					<span translate="entity.action.reset">Réinitialiser</span>
+				</button>
+			</div>
+		</form>
+	</div>
+
+
+
+
+	<div class="block full">
+		<div class="block-title">
+			<h2>
+				<span translate="user-management.home.title">Users</span>
+			</h2>
+		</div>
+
+		<div class="block-section clearfix ">
+			<div class="form-group form-actions">
+				<button class="btn btn-sm btn-primary pull-right" type="button"
+					ui-sref="user-management.new">
+					<span class="glyphicon glyphicon-plus"></span> <span
+						translate="user-management.home.createLabel">Create a new
+						User</span>
+				</button>
+			</div>
+		</div>
+
+		<div class="table-responsive remove-margin-bottom">
+			<table
+				class="table table-striped table-bordered table-vcenter remove-margin-bottom"
+				nv-table
+				update-fn="loadAll()" 
+				sorting="sort"
+				
+				>
+				<thead>
+					<tr>
+						<th sort-by="firstName" translate="user-management.name">First & Last name</th>
+						<th sort-by="login" translate="user-management.login">Login</th>
+						<th sort-by="activated" translate="user-management.status">Status</th>
+						<th translate="user-management.profiles">Profiles</th>
+						<th sort-by="createdDate"translate="user-management.createdDate">CreatedDate</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="user in users track by user.id">
+						<td>{{user | userName}}</td>
+
+						<td>
+							<div ng-repeat="authority in user.authorities">
+								<span>{{ user.login}}</span>
+							</div>
+						</td>
+						<td><span class="label label-danger"
+							ng-click="setActive(user, true)" ng-show="!user.activated"
+							translate="user-management.deactivated" style="cursor: pointer;">Desactivated</span>
+							<span class="label label-success"
+							ng-click="setActive(user, false)" ng-show="user.activated"
+							translate="user-management.activated" style="cursor: pointer;">Activated</span>
+						</td>
+
+
+						<td>
+							<div ng-repeat="authority in user.authorities">
+								<span class="label label-info">{{ authority | userType}}</span>
+							</div>
+						</td>
+						<td>{{user.createdDate | getDate | date:'dd/MM/yyyy:HH:mm'}}</td>
+						<td class="text-center">
+							<div class="btn-group btn-group-xs">
+								<button type="submit"
+									ui-sref="user-management-detail({login:user.login})"
+									class="btn btn-default">
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</button>
+								<button type="submit"
+									ui-sref="user-management.edit({login:user.login})"
+									class="btn btn-default">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+								<button type="submit"
+									ui-sref="user-management.password({login:user.login})"
+									class="btn  btn-default">
+									<span class="fa fa-key"></span>
+								</button>
+								<button type="submit"
+									ui-sref="user-management.delete({login:user.login})"
+									class="btn btn-danger "
+									ng-disabled="currentAccount.login==user.login">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+								
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<uib-pagination class="pagination-sm" total-items="totalItems"
+				ng-model="page" ng-change="loadAll()"></uib-pagination>
+		</div>
+	</div>
+	<div class="text-center"></div>
+</div>
+>>>>>>> branch 'master' of https://github.com/HabibKsentini/epi.git

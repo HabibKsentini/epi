@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form name="deleteForm" ng-submit="confirmDelete(user.login)">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -17,3 +18,24 @@
         </button>
     </div>
 </form>
+=======
+<form name="deleteForm" ng-submit="confirmDelete(user.login)">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <p translate="user-management.delete.question" translate-values="{login: '{{user.login}}'}">Are you sure you want to delete this User?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-sm btn-danger">
+            <span class="glyphicon glyphicon-trash"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+        </button>
+    </div>
+</form>
+>>>>>>> branch 'master' of https://github.com/HabibKsentini/epi.git
