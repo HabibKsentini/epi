@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use strict';
 
 angular.module('epiApp')
@@ -42,48 +41,3 @@ angular.module('epiApp')
                 }
             });
     });
-=======
-'use strict';
-
-angular.module('epiApp')
-    .config(function ($stateProvider) {
-        $stateProvider
-            .state('error', {
-                parent: 'site',
-                url: '/error',
-                data: {
-                    authorities: [],
-                    pageTitle: 'error.title'
-                },
-                views: {
-                    'content@site': {
-                        templateUrl: 'scripts/app/error/error.html'
-                    }
-                },
-                resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('error');
-                        return $translate.refresh();
-                    }]
-                }
-            })
-            .state('accessdenied', {
-                parent: 'site',
-                url: '/accessdenied',
-                data: {
-                    authorities: []
-                },
-                views: {
-                    'content@site': {
-                        templateUrl: 'scripts/app/error/accessdenied.html'
-                    }
-                },
-                resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('error');
-                        return $translate.refresh();
-                    }]
-                }
-            });
-    });
->>>>>>> branch 'master' of https://github.com/HabibKsentini/epi.git
