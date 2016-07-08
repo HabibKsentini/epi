@@ -17,7 +17,9 @@
 		"students.placeholder": "Sélectionnez les elèves",
 		"teachers": "Enseignants",
 		"teachers.placeholder": "Sélectionnez les enseignants",
-		"medias": "medias",
+		"medias": "Medias",
+		"newlink": "Nouvau Lien",
+		"medialink.placeholder":"http://www.youtube.com/embed/XXXXXXXXXXX",
 		"create": 
 		{
 			"title": "Créer un EPI"

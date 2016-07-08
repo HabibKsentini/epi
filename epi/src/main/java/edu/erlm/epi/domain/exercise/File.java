@@ -14,11 +14,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.internal.NotNull;
+
 
 import edu.erlm.epi.domain.AbstractAuditingEntity;
 import lombok.Getter;

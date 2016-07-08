@@ -52,7 +52,7 @@ angular.module('epiApp').controller(
 					vm.topicColor = getTopicColors(data.topic.id); 
 					loadFiles(id);
 				//	isValidator();
-					loadMediaURL(data.medias);
+					loadMediaURL(data.mediaUrls);
 				});
 			}
 
@@ -91,10 +91,10 @@ angular.module('epiApp').controller(
 
 			}
 			
-			function loadMediaURL(medias) {
+			function loadMediaURL(mediaUrls) {
 				var urls = [];
-				for (var i = 0; i < medias.length; i++) {
-					urls.push({domain: $sce.trustAsResourceUrl(medias[i].mediaURL),description: $sce.trustAsResourceUrl(medias[i].mediaDescription)}); 
+				for (var i = 0; i < mediaUrls.length; i++) {
+					urls.push({domain: $sce.trustAsResourceUrl(mediaUrls[i])}); 
 				}
  			    $scope.urls = urls;
 			}

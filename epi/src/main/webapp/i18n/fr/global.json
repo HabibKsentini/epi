@@ -1,4 +1,3 @@
-
 {
 	"global": 
 	{
@@ -112,6 +111,7 @@
 		{
 			"addblob": "Ajouter blob",
 			"addimage": "ajouter image",
+			"addlink": "ajouter lien",
 			"back": "Retour",
 			"ok": "Ok",
 			"cancel": "Annuler",
@@ -169,5 +169,4 @@
 	},
 
 	"footer": "Ceci est votre pied de page"
-
 }

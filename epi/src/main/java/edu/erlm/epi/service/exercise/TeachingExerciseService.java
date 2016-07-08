@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.erlm.epi.domain.User;
 import edu.erlm.epi.domain.exercise.File;
+import edu.erlm.epi.domain.exercise.MediaLink;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.exercise.support.TeachingExerciseInfoDTO;
 import edu.erlm.epi.domain.school.Teacher;
@@ -172,5 +173,29 @@ public class TeachingExerciseService {
 	}
 	
 
+	public List<MediaLink> updateMediaLinks(Long teachingExerciseId, List<String> mediaUrls){
+		List<MediaLink> medias = mediaLinkRepository.findByTeachingExerciseId(teachingExerciseId);
+		for (MediaLink media : medias){ 
+			if (mediaUrls.contains(media.getMediaURL())){ // if already exist remove from add list
+				mediaUrls.remove(media.getMediaURL());
+			}else { 									// if not remove from DB
+				mediaLinkRepository.delete(media.getId());
+			}
+		}
+		
+		if (!mediaUrls.isEmpty()){
+			User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+			for (String url : mediaUrls){
+				MediaLink newMl = new MediaLink();
+				newMl.setMediaURL(url);
+				newMl.setTeachingExerciseId(teachingExerciseId);
+				newMl.setCreatedBy(user.getLogin());
+				newMl.setMediaDescription("");
+				mediaLinkRepository.save(newMl);
+			}
+		}
+		
+		return mediaLinkRepository.findByTeachingExerciseId(teachingExerciseId);
+	}
 
 }

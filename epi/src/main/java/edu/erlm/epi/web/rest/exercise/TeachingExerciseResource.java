@@ -132,8 +132,10 @@ public class TeachingExerciseResource {
 		exercise = TeachingEexrciseCreateOrUpdateDTO.convertToTeachingExercise(teachingEexrciseCreateOrUpdateDTO,
 				exercise);
 		teachingExerciseRepository.save(exercise);
-		return ResponseEntity.created(new URI("/exercises/" + exercise.getId()))
-				.headers(HeaderUtil.createAlert("exercise.created", exercise.getId().toString())).body(exercise);
+		exercise.setMedias(teachingExerciseService.updateMediaLinks(teachingEexrciseCreateOrUpdateDTO.getId(), teachingEexrciseCreateOrUpdateDTO.getMediaUrls()));
+		TeachingExerciseDTO teachingExerciseDTO = new TeachingExerciseDTO(exercise);
+		return ResponseEntity.created(new URI("/exercise/details/" + exercise.getId()))
+				.headers(HeaderUtil.createAlert("exercise.updated", exercise.getId().toString())).body(teachingExerciseDTO);
 	}
 
 	@RequestMapping(value = "/files", method = RequestMethod.GET)

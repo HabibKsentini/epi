@@ -2,7 +2,6 @@
 package edu.erlm.epi.web.rest;
 
 import java.net.URI;
-
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +37,6 @@ import edu.erlm.epi.security.AuthoritiesConstants;
 import edu.erlm.epi.service.MailService;
 import edu.erlm.epi.service.UserService;
 import edu.erlm.epi.web.rest.dto.ManagedUserDTO;
-import edu.erlm.epi.web.rest.dto.UserDTO;
 import edu.erlm.epi.web.rest.util.HeaderUtil;
 import edu.erlm.epi.web.rest.util.PaginationUtil;
 

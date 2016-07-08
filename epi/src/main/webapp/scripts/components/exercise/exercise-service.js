@@ -152,11 +152,20 @@
 				"teacherIds" : _getArrayOfId(exercise.teachers),
 				"studentIds" : _getArrayOfId(exercise.students),
 				"groupId" : exercise.group != null ? exercise.group.id : null,
-				"disciplineIds" : _getArrayOfId(exercise.disciplines)
+				"disciplineIds" : _getArrayOfId(exercise.disciplines),
+				"mediaUrls":exercise.mediaUrls
 			};
 
 			return exerciseData;
 		}
+		
+	/*	function getArrayOfObject(objects) {
+			var urls = [];
+			for (var i = 0; i < objects.length; i++) {
+				urls.push(objects); 
+			}
+			return urls;
+		}*/
 
 		function _getArrayOfId(array) {
 			if (array != null) {

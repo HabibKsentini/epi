@@ -1,6 +1,7 @@
 package edu.erlm.epi.web.rest.dto;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.erlm.epi.domain.User;
@@ -37,9 +38,9 @@ public class TeachingExerciseDTO {
 
 	private List<Student> students;
 
-	private List<Teacher> teachers;
+	private List<Teacher> teachers;	
 	
-	private List<MediaLink> medias;
+	private List<String> mediaUrls;
 	
 	private ZonedDateTime createdDate;
 	
@@ -60,7 +61,13 @@ public class TeachingExerciseDTO {
 		this.disciplines = teachingExercise.getDisciplines(); 
 		this.createdDate = teachingExercise.getCreatedDate(); 
 		this.isMarkedForRead = teachingExercise.isMarkedForReadByTheCurrentUser(); 
-		this.medias = teachingExercise.getMedias();
+		List<MediaLink> medias = teachingExercise.getMedias();
+		this.mediaUrls = new ArrayList<String>();
+		if (medias != null && !medias.isEmpty()){
+			for (MediaLink ml : medias){
+				this.mediaUrls.add(ml.getMediaURL());
+			}
+		}
 	}
 	
 	

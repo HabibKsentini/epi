@@ -69,7 +69,7 @@
 								ng-if="ExerciseDetailsController.exercise.status == 'IN_PREPARATION'"
 								class="label label-danger ng-scope"
 								translate="exercise.progressionStatus.inProgress">En
-									cours de r√©alisation</span> <span
+									cours de rÈalisation</span> <span
 								ng-if="ExerciseDetailsController.exercise.status == 'WAITING_FOR_VALIDATION'"
 								class="label label-warning ng-scope"
 								translate="exercise.progressionStatus.waiting">Wainting</span> <span
@@ -105,10 +105,12 @@
 				</a>
 
 			<uib-accordion> <uib-accordion-group
-					style="margin-top:-40px; hight:20px;"	ng-show="urls.length === 0" ng-init="isOpen = true" is-open="isOpen" heading="Videos">
+					style="margin-top:-40px;"	ng-show="urls.length === 0" 
+					ng-init="isOpen = true" is-open="isOpen" 
+					heading="{{'exercise.medias' | translate}}">
 			<div class="panel-body" style="padding: unset;" >
    				<span  ng-repeat="url in urls">      
-        			<iframe style="width: 49%;" ng-src="{{ url.domain }}" title="">{{ url.description }}</iframe>
+        			<iframe style="width: 49%; height: 250px;" ng-src="{{ url.domain }}" >{{ url.domain}}</iframe>
         		</span>
 			</div>
 			</uib-accordion-group></uib-accordion>

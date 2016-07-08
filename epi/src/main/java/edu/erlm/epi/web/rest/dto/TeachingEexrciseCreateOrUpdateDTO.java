@@ -29,6 +29,7 @@ public class TeachingEexrciseCreateOrUpdateDTO {
 	private List<Long> studentIds;
 	private Long groupId;
 	private List<Long> disciplineIds;
+	private List<String> mediaUrls;
 
 	public static TeachingExercise convertToTeachingExercise(
 			TeachingEexrciseCreateOrUpdateDTO teachingEexrciseCreateOrUpdateDTO, TeachingExercise teachingExercise) {

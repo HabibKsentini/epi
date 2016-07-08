@@ -47,6 +47,7 @@ public class MailService {
     /**
      * System default email address that sends the e-mails.
      */
+    @SuppressWarnings("unused")
     private String from;
 
     @Async

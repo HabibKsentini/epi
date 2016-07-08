@@ -1,9 +1,13 @@
 package edu.erlm.epi.security;
 
-import edu.erlm.epi.domain.PersistentToken;
-import edu.erlm.epi.domain.User;
-import edu.erlm.epi.repository.PersistentTokenRepository;
-import edu.erlm.epi.repository.UserRepository;
+import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.util.Arrays;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
@@ -12,16 +16,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.codec.Base64;
-import org.springframework.security.web.authentication.rememberme.*;
+import org.springframework.security.web.authentication.rememberme.AbstractRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.CookieTheftException;
+import org.springframework.security.web.authentication.rememberme.InvalidCookieException;
+import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.security.SecureRandom;
-import java.time.LocalDate;
-import java.util.Arrays;
+import edu.erlm.epi.domain.PersistentToken;
+import edu.erlm.epi.repository.PersistentTokenRepository;
+import edu.erlm.epi.repository.UserRepository;
 
 /**
  * Custom implementation of Spring Security's RememberMeServices.

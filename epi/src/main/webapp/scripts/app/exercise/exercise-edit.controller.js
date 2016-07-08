@@ -13,6 +13,8 @@ angular.module('epiApp').controller(
 			vm.uploadFile = uploadFile;
 			vm.downloadFile = downloadFile;
 			vm.updateExercise = updateExercise;
+			vm.addMediaLink = addMediaLink;
+			vm.newMediaLink = "" ;
 
 			function loadExercise(id) {
 				Exercise.getExercise(id).then(function(data) {
@@ -105,6 +107,13 @@ angular.module('epiApp').controller(
 						});
 			}
 			;
+			
+			function addMediaLink(){
+				if (vm.newMediaLink != ""){
+				vm.exercise.mediaUrls.push(vm.newMediaLink);
+				vm.newMediaLink = ""
+				}
+			}
 
 		});
 

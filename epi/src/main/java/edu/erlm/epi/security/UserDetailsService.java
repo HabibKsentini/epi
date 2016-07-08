@@ -1,6 +1,5 @@
 package edu.erlm.epi.security;
 
-import edu.erlm.epi.domain.Authority;
 import edu.erlm.epi.domain.User;
 import edu.erlm.epi.repository.UserRepository;
 import org.slf4j.Logger;
