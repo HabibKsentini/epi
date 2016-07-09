@@ -15,6 +15,7 @@ angular.module('epiApp').controller(
 			vm.updateExercise = updateExercise;
 			vm.addMediaLink = addMediaLink;
 			vm.newMediaLink = "" ;
+			vm.removeMediaLink = removeMediaLink;
 
 			function loadExercise(id) {
 				Exercise.getExercise(id).then(function(data) {
@@ -115,6 +116,14 @@ angular.module('epiApp').controller(
 				}
 			}
 
+			function removeMediaLink(media){
+
+				for (var i = 0; i < vm.exercise.mediaUrls.length; i++) {
+					if (media === vm.exercise.mediaUrls[i]){
+						vm.exercise.mediaUrls.splice(i, 1);
+					}
+				}
+			}
 		});
 
 

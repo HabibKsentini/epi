@@ -19,6 +19,7 @@
 		"teachers.placeholder": "Sélectionnez les enseignants",
 		"medias": "Medias",
 		"newlink": "Nouvau Lien",
+		"medialink":"Lien Media",
 		"medialink.placeholder":"http://www.youtube.com/embed/XXXXXXXXXXX",
 		"create": 
 		{
@@ -35,7 +36,8 @@
 		"file": 
 		{
 			"name" : "Nom du fichier", 
-			"creationDate" : "Date de création"
+			"creationDate" : "Date de création",
+			"noFileUploaded" : "Aucun fichier n'a été chargé"
 		}
 		
 	}
