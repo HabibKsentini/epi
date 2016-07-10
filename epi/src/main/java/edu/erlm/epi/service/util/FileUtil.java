@@ -16,7 +16,7 @@ public class FileUtil {
 	private FileUtil() {
 	}
 
-	public final static String IMAGE_DIRECTORY_ABSOLUTE_PATH = "F:/projects/Gradle/epi/src/main/webapp/dist/uploads";
+	public final static String IMAGE_DIRECTORY_ABSOLUTE_PATH = "D:/DevTools/Workspace/epi/epi/src/main/webapp/dist/uploads";
 	public final static String IMAGE_DIRECTORY_RELATIVE_PATH = "dist/uploads";
 
 	public static ImageDTO uploadImage(MultipartFile multipartFile) throws IOException {

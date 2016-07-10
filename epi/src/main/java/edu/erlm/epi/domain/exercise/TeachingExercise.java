@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -99,9 +100,8 @@ public class TeachingExercise extends AbstractAuditingEntity implements Serializ
 					@JoinColumn(referencedColumnName = "id", name = "user_id") })
 	private List<User> followers;
 	
-//	@OneToMany
-//	@JoinColumn(referencedColumnName = "id", name = "teaching_exercise_id")
-	@Transient 
+	@OneToMany(cascade = CascadeType.REMOVE)
+	@JoinColumn(referencedColumnName = "id", name = "teaching_exercise_id")
 	private List<MediaLink> medias =new ArrayList<MediaLink>();
 
 	@ManyToMany

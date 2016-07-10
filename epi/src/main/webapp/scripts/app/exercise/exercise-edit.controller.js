@@ -2,7 +2,7 @@
 
 angular.module('epiApp').controller(
 		'ExerciseEditController',
-		function(Exercise, $stateParams, File, $filter, Group, ConfirmationDialogService) {
+		function(Exercise, $stateParams, File, $filter, Group, ConfirmationDialogService, $state) {
 
 			var vm = this;
 			vm.exercise = {};
@@ -63,7 +63,9 @@ angular.module('epiApp').controller(
 			}
 
 			function updateExercise() {
-				Exercise.update(vm.exercise);
+				Exercise.update(vm.exercise).then(function(){
+					$state.go("exercise-details", {"id":vm.exercise.id});
+				});
 			}
 
 			function initStudents(){
