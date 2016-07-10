@@ -109,6 +109,8 @@ angular.module('epiApp').controller(
 			}
 			;
 			
+			
+			
 			function addMediaLink(){
 				if (vm.newMediaLink != ""){
 				vm.exercise.mediaUrls.push(vm.newMediaLink);

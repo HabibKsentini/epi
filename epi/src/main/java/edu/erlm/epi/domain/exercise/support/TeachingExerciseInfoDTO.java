@@ -1,15 +1,13 @@
 package edu.erlm.epi.domain.exercise.support;
 
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.school.Discipline;
-import edu.erlm.epi.domain.school.Teacher;
 import edu.erlm.epi.domain.school.Topic;
-import edu.erlm.epi.web.rest.dto.UserDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,6 +25,8 @@ public class TeachingExerciseInfoDTO {
 	private String disciplines;
 	private GroupDTO group;
 	private String status;
+	private String createdBy;
+	private LocalDateTime createdAt;
 	private LocalDateTime validatedAt;
 
 	public static TeachingExerciseInfoDTO valueOf(TeachingExercise teachingExercise) {
@@ -38,6 +38,8 @@ public class TeachingExerciseInfoDTO {
 		teachingExerciseDTO.setGroup(GroupDTO.valueOf(teachingExercise.getGroup()));
 		teachingExerciseDTO.setStatus(teachingExercise.getStatus().toString());
 		teachingExerciseDTO.setValidatedAt(teachingExercise.getValidatedAt());
+		teachingExerciseDTO.setCreatedBy(teachingExercise.getCreatedBy());		
+		teachingExerciseDTO.setCreatedAt(teachingExercise.getCreatedDate().toLocalDateTime());
 		return teachingExerciseDTO;
 	}
 

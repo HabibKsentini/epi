@@ -17,10 +17,15 @@
 		"students.placeholder": "Sélectionnez les elèves",
 		"teachers": "Enseignants",
 		"teachers.placeholder": "Sélectionnez les enseignants",
-		"medias": "Medias",
-		"newlink": "Nouvau Lien",
-		"medialink":"Lien Media",
-		"medialink.placeholder":"http://www.youtube.com/embed/XXXXXXXXXXX",
+		"noDataFound" : "Aucune donnée trouvée",
+		
+		"media": 
+		{ 	"medias": "Medias",
+			"newlink": "Nouvau Lien",
+			"medialink":"Lien Media",
+			"noMedialink":"Aucun lien Youtube n'a été chargé",
+			"medialink.placeholder":"http://www.youtube.com/embed/XXXXXXXXXXX"
+		},
 		"create": 
 		{
 			"title": "Créer un EPI"

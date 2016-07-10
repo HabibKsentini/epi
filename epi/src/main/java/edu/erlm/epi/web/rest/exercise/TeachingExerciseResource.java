@@ -87,6 +87,8 @@ public class TeachingExerciseResource {
 
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ImageDTO> uploadImage(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+
+
 		ImageDTO imageDTO = FileUtil.uploadImage(multipartFile);
 		return new ResponseEntity<>(imageDTO, HttpStatus.OK);
 	}

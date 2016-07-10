@@ -34,7 +34,10 @@
 			"topic": "Thème",
 			"disciplines": "Disciplines", 
 			"status": "Status", 
-			"topicDisciplines" : "Thème & Disciplines"
+			"topicDisciplines" : "Thème & Disciplines",
+			"classe" : "classe",
+			"ValidationDate" : "Date de Publication",
+			"CreationDate" :"Date de Création"
 		},
 
 		"like": "Si vous aimez JHipster, donnez nous une étoile sur",

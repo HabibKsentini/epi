@@ -9,8 +9,10 @@
 			<div
 				class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
 				<div class="sidebar-user-avatar">
-					<a href="page_ready_user_profile.php"> <img
-						src="assets/images/teacher.png" alt="avatar">
+					<a href="page_ready_user_profile.php"> 
+					<img has-authority="ROLE_TEACHER" src="assets/images/teacher.png" alt="avatar">
+					<img has-authority="ROLE_STUDENT" src="assets/images/student.png" alt="avatar">
+					<img has-authority="ROLE_ADMIN"  src="assets/images/admin.png" alt="avatar">
 					</a>
 				</div>
 				<div class="sidebar-user-name">{{userName}}</div>
@@ -37,8 +39,7 @@
 					uib-dropdown-toggle ng-click="check(2)"><i
 						class=" glyphicon glyphicon-briefcase sidebar-nav-icon"></i><span
 						class="sidebar-nav-mini-hide"
-						translate="global.menu.navigation.main">Navigation par
-							Th�me</span></a></li>
+						translate="global.menu.navigation.main">Navigation par theme</span></a></li>
 
 
 				<li has-authority="ROLE_ADMIN"><a ui-sref-active="active" href="" class="active"

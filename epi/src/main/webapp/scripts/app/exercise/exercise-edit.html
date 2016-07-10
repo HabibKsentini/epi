@@ -127,15 +127,15 @@
 		</uib-accordion-group></uib-accordion>
 	<uib-accordion> <uib-accordion-group
 		ng-init="isOpen = true" is-open="isOpen"
-		heading="{{'exercise.medias' | translate}}">
+		heading="{{'exercise.media.medias' | translate}}">
 	<div class="panel-body">
 
 	<div class="form-group">
 			<label for="compose-message" class="col-md-3 col-lg-2 control-label"
-				translate="exercise.newlink">new Link</label>
+				translate="exercise.media.newlink">new Link</label>
 			<span class="col-md-9 col-lg-8">
 				<input ng-model="ExerciseController.newMediaLink"
-					placeholder="{{ 'exercise.medialink.placeholder' | translate}}"
+					placeholder="{{ 'exercise.media.medialink.placeholder' | translate}}"
 					class="form-control" name="compose-message" id="compose-message" />
 				
 			</span>
@@ -152,7 +152,7 @@
 			class="table table-striped table-bordered table-vcenter remove-margin-bottom">
 			<thead>
 				<tr>
-					<th class="text-center"><span translate="exercise.medialink">Name</span>
+					<th class="text-center"><span translate="exercise.media.medialink">Name</span>
 					</th>
 					
 					<th class="text-center"></th>
@@ -174,9 +174,8 @@
 			</tbody>
 		</table>
 
-		<h2 class="text-center" ng-show="displayedfiles.length === 0">Aucun
-			lien Youtube n'a été chargé
-			</h2>
+		<h3 class="text-center" ng-show="ExerciseController.exercise.mediaUrls.length === 0" translate="exercise.media.noMedialink">
+			</h3>
 
 	</div>
 
@@ -242,8 +241,7 @@
 			</tbody>
 		</table>
 
-		<h3 class="text-center" ng-show="displayedfiles.length === 0" 
-						translate="exercise.file.noFileUploaded">
+		<h3 class="text-center" ng-show="ExerciseController.exercise.uploadedFiles.length === 0" translate="exercise.file.noFileUploaded">
 			</h3>
 
 	</div>

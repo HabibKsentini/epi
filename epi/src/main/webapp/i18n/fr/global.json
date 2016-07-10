@@ -127,7 +127,9 @@
 			"upload": "Charger un fichier",
 			"download": "Télécharger",
 			"search": "Chercher", 
-			"reset": "Réinitialiser"
+			"reset": "Réinitialiser",
+			"publish" : "Publier",
+			"markToRead" :"Ajouter à  la Liste de lecture"
 		},
 
 		"detail": 
