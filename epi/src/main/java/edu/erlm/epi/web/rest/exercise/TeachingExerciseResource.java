@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.erlm.epi.domain.User;
 import edu.erlm.epi.domain.exercise.File;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.exercise.support.TeachingExerciseInfoDTO;
+import edu.erlm.epi.domain.school.Teacher;
 import edu.erlm.epi.repository.exercise.FileRepository;
 import edu.erlm.epi.repository.exercise.TeachingExerciseRepository;
 import edu.erlm.epi.service.UserService;
@@ -120,7 +122,12 @@ public class TeachingExerciseResource {
 	@RequestMapping(value = "/createNew", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> createNew() throws URISyntaxException {
 		TeachingExercise teachingExercise = new TeachingExercise();
+		User current =userService.getCurrentUserWithoutAuthorities();
+		if (current != null){
+			teachingExercise.getTeachers().add((Teacher)current);
+		}
 		teachingExerciseRepository.save(teachingExercise);
+
 		TeachingExerciseDTO teachingExerciseDTO = new TeachingExerciseDTO(teachingExercise);
 		return ResponseEntity.created(new URI("/exercises/" + teachingExercise.getId()))
 				.headers(HeaderUtil.createAlert("exercise.created", teachingExercise.getId().toString()))

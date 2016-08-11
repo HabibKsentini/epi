@@ -35,7 +35,7 @@ public class UserDTO {
     @Size(min = 5, max = 100)
     private String email;
 
-    private boolean activated = false;
+    private boolean activated = true;
 
     @Size(min = 2, max = 5)
     private String langKey;

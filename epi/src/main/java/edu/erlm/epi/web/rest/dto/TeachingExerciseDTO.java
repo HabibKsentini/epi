@@ -44,7 +44,6 @@ public class TeachingExerciseDTO {
 	
 	private ZonedDateTime createdDate;
 	
-	
 	private boolean isMarkedForRead = false; 
 
 	public TeachingExerciseDTO(TeachingExercise teachingExercise) {

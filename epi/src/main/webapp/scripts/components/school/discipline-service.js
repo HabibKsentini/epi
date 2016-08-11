@@ -19,14 +19,6 @@ angular.module('epiApp').factory(
 angular.module('epiApp').factory(
 		'Topic',
 		function($resource, HateoasDataUtil) {
-			var colors = [ 'themed-background-fire',
-					'themed-background-autumn', 
-					'themed-background-spring',
-					'themed-background-dark-autumn',
-					'themed-background-amethyst',
-					'themed-background-night', 
-					'themed-background-dark',
-					'themed-background-flatie' ];
 			
 			var images = [  'assets/images/themeImg/health.png',
 							'assets/images/themeImg/arts.png', 
@@ -42,12 +34,12 @@ angular.module('epiApp').factory(
 					method : 'GET',
 					isArray : true,
 					cache : true,
+					 params: 'sort_by=id',
 
 					transformResponse : function(data) {
 						var data = HateoasDataUtil
 								.getEmbeddedDataWithout_Links(data);
 						angular.forEach(data, function(value, i) {
-							data[i].color = colors[value.id - 1];
 							data[i].image = images[value.id - 1];
 						});
 						return data;

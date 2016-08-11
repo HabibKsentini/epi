@@ -14,10 +14,17 @@ angular.module('epiApp').controller(
 			vm.goToWaitingForValidation = goToWaitingForValidation
 			vm.remove = remove;
 			vm.setMarkforReadToTrue = setMarkforReadToTrue; 
+			vm.invalidContentlength = invalidContentlength;
 			
 			
 			
-				 function trustSrcMedia(src) {
+			function invalidContentlength(){
+
+				var myContent = vm.exercise.rawContent;
+				return ($(myContent).text()).length < 250;
+			}
+
+			function trustSrcMedia(src) {
 			    return $sce.trustAsResourceUrl(src);
 			  }
 			
@@ -31,25 +38,13 @@ angular.module('epiApp').controller(
 
 			function validate() {
 				Exercise.validate(vm.exercise.id);
+				loadExercise($stateParams.id);
 			}
 			
-			function getTopicColors(index){
-				
-				var colors = [ 'themed-background-fire',
-						'themed-background-autumn',
-						'themed-background-spring',
-						'themed-background-dark-autumn',
-						'themed-background-amethyst',
-						'themed-background-night',
-						'themed-background-dark',
-						'themed-background-flatie'];
-				return colors[index - 1]; 
-			}
-
+			
 			function loadExercise(id) {
 				Exercise.get(id).then(function(data) {
 					vm.exercise = data
-					vm.topicColor = getTopicColors(data.topic.id); 
 					loadFiles(id);
 				//	isValidator();
 					loadMediaURL(data.mediaUrls);

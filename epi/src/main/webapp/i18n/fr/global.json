@@ -110,8 +110,8 @@
 		"action": 
 		{
 			"addblob": "Ajouter blob",
-			"addimage": "ajouter image",
-			"addlink": "ajouter lien",
+			"addimage": "Ajouter image",
+			"addlink": "Ajouter lien",
 			"back": "Retour",
 			"ok": "Ok",
 			"cancel": "Annuler",
@@ -125,6 +125,8 @@
 			"addinfos" : "Informations", 
 			"preview": "Aperçu", 
 			"upload": "Charger un fichier",
+			"uploadImage": "Charger une image",
+			"insertImage": "Insérer l'image",
 			"download": "Télécharger",
 			"search": "Chercher", 
 			"reset": "Réinitialiser",
@@ -156,7 +158,8 @@
 			"pattern": "Ce champs doit suivre l'expression régulière {{pattern}}.",
 			"number": "Ce champs doit être un nombre.",
 			"datetimelocal": "Ce champs doit être une date et une heure.", 
-			"minTow" : "Veuillez sélectionner au moins deux elements"
+			"minTow" : "Veuillez sélectionner au moins deux elements",
+			"contentMinLength" : "Le corp l'EPI doit au minimum contenir 250 caractères"
 		}
 	},
 
@@ -170,5 +173,7 @@
 		"idexists": "A new {{entityName}} cannot already have an ID"
 	},
 
+	"searchTitle": "Critères de recherche",
+	"searchResult": "Résultat de recherche",
 	"footer": "Ceci est votre pied de page"
 }

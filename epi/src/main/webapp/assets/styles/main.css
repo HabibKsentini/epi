@@ -1391,11 +1391,25 @@ a.sidebar-brand:focus, a.sidebar-brand:hover, a.sidebar-title:focus, a.sidebar-t
 	background-color: #fff
 }
 
-.widget-advanced .widget-header .widget-image-container {
+.widget-advanced .widget-header .widget-image-container .widget-classe-container {
 	position: static;
 	left: auto;
 	top: auto;
 	margin: 0
+}
+
+.widget-classe-container {
+	position: absolute;
+	display: inline-block;
+	padding: 5px;
+	height: 74px;
+	top: -36px;
+	left: 50%;
+	border-radius: 36px;
+	width: 120px;	
+	margin-left: -60px ;
+	background-color: #fff
+	
 }
 
 .widget-advanced-alt .widget-header, .widget-advanced-alt .widget-main {
@@ -2253,6 +2267,12 @@ input[type=text].form-control, input[type=password].form-control, input[type=ema
 	color: #777;
 	font-weight: 400
 }
+
+.warn-block {
+	color: #fdb666;
+	font-weight: 400
+}
+
 
 .input-group-addon {
 	min-width: 45px;
@@ -4273,4 +4293,27 @@ code {
     background-position: center right;
     background-repeat: no-repeat;
     background-size: 15px 19px;
+}
+
+
+
+/*
+ *  STYLE 3
+ */
+
+#style-3::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar-thumb
+{
+	background-color: #1bbae1;
 }

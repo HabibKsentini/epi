@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -114,6 +115,10 @@ public class User extends AbstractAuditingEntity implements Serializable, Search
 					@JoinColumn(referencedColumnName = "id", name = "teaching_exercise_id") })
 	private List<TeachingExercise> teachingExercisesMarkedForRead;
 
+	
+	@Formula("(select (select count(*) from t_teaching_exercise_student_junc t where t.user_id = id ) + (select count(*) from t_teaching_exercise_teacher_junc t where t.user_id = id)) ")
+	private Long countTeachingExercise;
+	
 	public Long getId() {
 		return id;
 	}
@@ -220,6 +225,10 @@ public class User extends AbstractAuditingEntity implements Serializable, Search
 
 	public List<TeachingExercise> getTeachingExercisesMarkedForRead() {
 		return this.teachingExercisesMarkedForRead;
+	}
+
+	public Long getCountTeachingExercise() {
+		return countTeachingExercise;
 	}
 
 	@Override

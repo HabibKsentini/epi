@@ -1,9 +1,7 @@
 <div>
 	<div class="block full">
 		<div class="block-title">
-			<h2>
-				<span>Critères de recherche</span>
-			</h2>
+			<h2 translate="searchTitle"></h2>
 		</div>
 		<form ng-submit="loadAll()" name="form" role="form" novalidate>
 			<div class="row">
@@ -29,7 +27,8 @@
 
 				<div class="col-md-3 col-sm-6">
 					<div class="form-group">
-						<label for="inputWebsite" class="control-label"> Nom</label>
+						<label for="inputWebsite" class="control-label" 
+						translate="user-management.firstName"> Nom</label>
 						<div class="input-icon right">
 							<input id="inputLastName" type="text"
 								ng-model="userSearchModel.lastName" class="form-control">
@@ -39,7 +38,8 @@
 
 				<div class="col-md-3 col-sm-6">
 					<div class="form-group">
-						<label for="inputFirstName" class="control-label">Prénom</label>
+						<label for="inputFirstName" class="control-label"
+						translate="user-management.lastName">Prenom</label>
 						<div class="input-icon right">
 							<input id="inputWebsite" type="text"
 								ng-model="userSearchModel.firstName" class="form-control">
@@ -60,7 +60,7 @@
 					class="btn btn-sm btn-warning"
 					title="{{'entity.action.reset' | translate}}">
 					<span class="glyphicon glyphicon-refresh"></span>
-					<span translate="entity.action.reset">Réinitialiser</span>
+					<span translate="entity.action.reset">Reinitialiser</span>
 				</button>
 			</div>
 		</form>
@@ -84,6 +84,13 @@
 						translate="user-management.home.createLabel">Create a new
 						User</span>
 				</button>
+				
+					<button class="btn btn-sm btn-primary "
+						ngf-select="loadFromFile($file)">
+						<i class="fa fa-upload "></i> <span
+							translate="entity.action.upload">Upload</span>
+					</button>
+				
 			</div>
 		</div>
 
@@ -101,6 +108,8 @@
 						<th sort-by="login" translate="user-management.login">Login</th>
 						<th sort-by="activated" translate="user-management.status">Status</th>
 						<th translate="user-management.profiles">Profiles</th>
+						<th sort-by="countTeachingExercise" style="max-width: 60px;"
+						translate="user-management.countTeachingExercise">countTeachingExercise</th>
 						<th sort-by="createdDate"translate="user-management.createdDate">CreatedDate</th>
 						<th></th>
 					</tr>
@@ -128,7 +137,10 @@
 								<span class="label label-info">{{ authority | userType}}</span>
 							</div>
 						</td>
+						<td style="max-width: 60px;">{{user.countTeachingExercise}}</td>
+						
 						<td>{{user.createdDate | getDate | date:'dd/MM/yyyy:HH:mm'}}</td>
+						
 						<td class="text-center">
 							<div class="btn-group btn-group-xs">
 								<button type="submit"

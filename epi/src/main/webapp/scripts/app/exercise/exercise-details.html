@@ -13,15 +13,16 @@
 			<div class="col-xs-12 ">
 
 				<button class="btn btn-sm btn-default " type="button" ui-sref="home">
-					<i class="fa fa-arrow-left"></i> <span translate="entity.action.back">Preview</span>
+					<i class="fa fa-arrow-left"></i> <span translate="entity.action.back">Cancel</span>
 				</button>
 				
 				
 				<button has-authority="ROLE_TEACHER"
 					ng-if="ExerciseDetailsController.exercise.status == 'IN_PREPARATION'"
+					ng-disabled="ExerciseDetailsController.invalidContentlength()"
 					class="btn btn-sm btn-success " type="button"
 					ng-click="ExerciseDetailsController.validate()">
-					<i class="fa fa-paper-plane"></i> <span translate="entity.action.publish"> Publier</span>
+					<i class="fa fa-paper-plane"></i> <span translate="entity.action.publish"> Publish</span>
 				</button>
 
 				<button
@@ -41,25 +42,36 @@
 					ng-if="ExerciseDetailsController.exercise.status == 'VALIDATED'  && ! ExerciseDetailsController.exercise.markedForRead"
 					class="btn btn-sm btn-primary " type="button"
 					ng-click="ExerciseDetailsController.setMarkforReadToTrue()">
-					<i class="fa fa-plus"></i> <span translate="entity.action.markToRead">Ajouter à la Liste de lecture</span>
+					<i class="fa fa-plus"></i> <span translate="entity.action.markToRead">Mark To Read</span>
 				</button>
 				
+				<span ng-show="ExerciseDetailsController.invalidContentlength()" class="warn-block">
+					<i class="fa fa-warning"></i>&nbsp;<span 
+						translate="entity.validation.contentMinLength">Minimum 25 charters
+					</span>
+				</span>
 			</div>
 		</div>
 	</div>
 
 	<div class="widget">
 		<div class="widget-advanced">
-			<div class="widget-header text-center" ng-class="ExerciseDetailsController.topicColor">
+			<div class="widget-header text-center"  style="background-color : {{ExerciseDetailsController.exercise.topic.topicColor}};">
 
 				<div class="row">
 					<div class="col-sm-3">
 						<address class="text-left">
+						
+							<i class="fa fa-calendar"></i>
+							{{ExerciseDetailsController.exercise.createdDate | getDate
+							|date:'dd/MM/yyyy'}}
+							<br>
 							<br>
 							<div
 								ng-repeat="value in ExerciseDetailsController.exercise.teachers">
 								<i class="fa fa-graduation-cap"></i> {{value | userName}} <br>
 							</div>
+							
 						</address>
 					</div>
 					<div class="col-sm-6">
@@ -82,15 +94,13 @@
 
 					</div>
 					<div class="col-sm-3">
-						<address class="text-right">
-							<br>
-							<div
+						<address id="style-3" class="text-right" style="overflow: auto; max-height: 130px;">
+							
+							<div 
 								ng-repeat="value in ExerciseDetailsController.exercise.students">
 								<i class="fa fa-user"></i> {{value | userName}} <br>
 							</div>
-							<i class="fa fa-calendar"></i>
-							{{ExerciseDetailsController.exercise.createdDate | getDate
-							|date:'dd/MM/yyyy'}}
+							
 
 						</address>
 					</div>
@@ -98,10 +108,11 @@
 
 			</div>
 			<div class="widget-main widget-main-with-border ">
-				<a class="widget-image-container animation-fadeIn"
+				<a class="widget-classe-container animation-fadeIn"
 					href="javascript:void(0)"> <span
 					class="widget-icon themed-background"
-					ng-bind="ExerciseDetailsController.exercise.group.name"></span>
+					style="width: 110px !important;"
+					>{{ExerciseDetailsController.exercise.level.name}} {{ExerciseDetailsController.exercise.group.name}}</span>
 				</a>
 
 			<uib-accordion> <uib-accordion-group
@@ -114,6 +125,9 @@
         		</span>
 			</div>
 			</uib-accordion-group></uib-accordion>
+			<div class="panel-body">
+				
+			
 				<div ng-bind-html="ExerciseDetailsController.exercise.rawContent">
 			</div>
 
@@ -133,7 +147,7 @@
 						<span>Fichiers</span>
 					</h2>
 				</div>
-				<table ng-show="ExerciseController.exercise.uploadedFiles.length > 0"
+				<table ng-show="ExerciseDetailsController.exercise.uploadedFiles.length > 0"
 					class="table table-striped table-bordered table-vcenter remove-margin-bottom">
 					<thead>
 						<tr>
@@ -162,7 +176,7 @@
 				</table>
 				
 				
-				<h3 class="text-center" ng-show="displayedfiles.length === 0" 
+				<h3 class="text-center" ng-show="ExerciseDetailsController.exercise.uploadedFiles.length === 0" 
 						translate="exercise.file.noFileUploaded">
 			</h3>
 			</div>

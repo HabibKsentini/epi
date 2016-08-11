@@ -1,7 +1,7 @@
 <form data-ng-submit="insert()">
 	<div class="modal-header">
-		<h4>
-			 Insérer image
+		<h4 translate="exercise.insertNewImage">
+			 Insert image
 		</h4>
 	</div>
 	<div class="modal-body">
@@ -12,14 +12,15 @@
 	</div>
 	<div class="modal-footer">
 		<button data-ng-click="$dismiss()" type="button"
-			class="btn btn-default pull-left">Cancel</button>
+			class="btn btn-sm btn-default pull-left">Cancel</button>
 		<button type="submit"
 			data-ng-disabled="image == null || image == '' || image == 'img/posts/default.svg'"
-			class="btn btn-primary pull-right">Insert Image</button>
+			class="btn btn-sm btn-primary pull-right">
+			<i class="fa fa-check-square"></i> <span translate="entity.action.insertImage">Insert Image</span></button>
 		<button type="button" data-ngf-select data-ngf-change="upload()"
 			data-ng-model="file" data-ngf-multiple="false"
-			class="btn btn-primary pull-right">
-			<span class="glyphicon glyphicon-picture mR5"></span>Upload Image
+			class="btn btn-sm btn-primary pull-right">
+			<i class="fa fa-file-image-o"></i> <span  translate="entity.action.uploadImage">Upload Image</span>
 		</button>
 	</div>
 </form>

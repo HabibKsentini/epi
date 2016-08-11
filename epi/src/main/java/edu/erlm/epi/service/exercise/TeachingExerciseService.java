@@ -119,8 +119,7 @@ public class TeachingExerciseService {
 		teachingExercise.getStudents().size();
 		teachingExercise.getTeachers().size();
 		teachingExercise.getDisciplines().size();
-		teachingExercise.getMedias().addAll(mediaLinkRepository.findByTeachingExerciseId(id));
-//		Teacher validator = null;
+
 
 		if (teachingExercise.getFollowers().size() > 0) {
 			List<User> followers = teachingExercise.getFollowers().stream()

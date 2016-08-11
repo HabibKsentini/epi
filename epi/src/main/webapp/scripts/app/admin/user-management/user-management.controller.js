@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('epiApp')
-    .controller('UserManagementController', function ($scope, Principal, User, ParseLinks, Language) {
+    .controller('UserManagementController', function ($scope, Principal, User, Upload, ParseLinks, Language) {
         $scope.users = [];
         $scope.authorities = ["ROLE_TEACHER", "ROLE_ADMIN", "ROLE_STUDENT"];
         Language.getAll().then(function (languages) {
@@ -71,4 +71,20 @@ angular.module('epiApp')
             for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
             return obj3;
         }
+        
+    	$scope.loadFromFile = function (file) {
+			Upload.upload({
+				url : 'api/loadusers',
+				data : {
+					file : file
+				}
+			}).then(
+					function(resp) {
+						console.log('Success ' + resp.config.data.file.name
+								+ 'uploaded. Response: ' + resp.data);
+						//vm.exercise.uploadedFiles.push(resp.data);
+					});
+			$scope.loadAll();
+		}
+		;
     });

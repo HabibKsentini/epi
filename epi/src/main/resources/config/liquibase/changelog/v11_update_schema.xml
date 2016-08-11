@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet id="epi_change_add_color_topic" author="yassine">
+		
+		<addColumn  tableName="t_topic_param">
+			<column name="topic_color" type="varchar(10)" />
+		</addColumn>
+
+	</changeSet>
+</databaseChangeLog>

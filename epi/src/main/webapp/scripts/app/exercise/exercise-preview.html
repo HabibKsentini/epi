@@ -14,6 +14,11 @@
 				<div class="row">
 					<div class="col-sm-3">
 						<address class="text-left">
+						
+							<i class="fa fa-calendar"></i>
+							{{ExerciseController.exercise.createdDate | getDate
+							|date:'dd/MM/yyyy'}}
+							<br>
 							<br>
 							<div ng-repeat="value in ExerciseController.exercise.teachers">
 								<i class="fa fa-graduation-cap"></i> {{value.name}} <br>
@@ -27,7 +32,7 @@
 								ng-if="ExerciseController.exercise.status == 'IN_PREPARATION'"
 								class="label label-danger ng-scope"
 								translate="exercise.progressionStatus.inProgress">En
-									cours de r√©alisation</span> <span
+									cours de rÈalisation</span> <span
 								ng-if="ExerciseController.exercise.status == 'WAITING_FOR_VALIDATION'"
 								class="label label-warning ng-scope"
 								translate="exercise.progressionStatus.waiting">Wainting</span> <span
@@ -40,28 +45,28 @@
 
 					</div>
 					<div class="col-sm-3">
-						<address class="text-right">
-							<br>
+						<address id="style-3" class="text-right" style="overflow: auto; max-height: 130px;">
+			
 							<div ng-repeat="value in ExerciseController.exercise.students">
 								<i class="fa fa-user"></i> {{value.name}} <br>
 							</div>
-							<i class="fa fa-calendar"></i>
-							{{ExerciseController.exercise.createdDate | getDate
-							|date:'dd/MM/yyyy'}}
-
+		
 						</address>
 					</div>
 				</div>
 
 			</div>
 			<div class="widget-main widget-main-with-border ">
-				<a class="widget-image-container animation-fadeIn"
+				<a class="widget-classe-container animation-fadeIn"
 					href="javascript:void(0)"> <span
 					class="widget-icon themed-background"
-					ng-bind="ExerciseController.exercise.group.name"></span>
+					style="width: 110px !important;"
+					>{{ExerciseController.exercise.level.name}} {{ExerciseController.exercise.group.name}}</span>
 				</a>
-				<div ng-bind-html="ExerciseController.exercise.rawContent"</div>
+				<div ng-bind-html="ExerciseController.exercise.rawContent"></div>
+
 			</div>
+
 		</div>
 	</div>
 

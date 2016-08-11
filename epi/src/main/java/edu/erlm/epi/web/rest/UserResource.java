@@ -1,8 +1,14 @@
 
 package edu.erlm.epi.web.rest;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -199,6 +205,66 @@ public class UserResource {
 		log.debug("REST request to delete User: {}", login);
 		userService.deleteUserInformation(login);
 		return ResponseEntity.ok().headers(HeaderUtil.createAlert("user-management.deleted", login)).build();
+	}
+	
+	
+	/**
+	 * LOAD USERS FROM FILE : file -> add all Users.
+	 */
+	@RequestMapping(value = "/loadusers", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@Timed
+	@Secured(AuthoritiesConstants.ADMIN)
+	public ResponseEntity<?> loadUserfromFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request)
+			throws URISyntaxException {
+		log.debug("REST request to add User from file : {}", multipartFile.getOriginalFilename());
+
+		InputStream inputStream;
+		try {
+			inputStream = multipartFile.getInputStream();
+
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+			String line;
+			User newUser = null;
+			while ((line = bufferedReader.readLine()) != null)
+			{
+				if (!line.isEmpty()){
+					String [] userInfos = line.split(";");
+					Set<String> authorities = new HashSet<String>(Arrays.asList(userInfos[7].split(",")));
+					// user processing       
+					ManagedUserDTO managedUserDTO = new ManagedUserDTO(userInfos[1], // login
+							userInfos[2] , //password, 
+							userInfos[3] , //firstName, 
+							userInfos[4] , //lastName, 
+							userInfos[5] , //email, 
+							!userInfos[6].startsWith("N") , //activated (if not 'N' ), 
+							"fr" , //langKey, 
+							authorities);
+
+					if (!userRepository.findOneByLogin(managedUserDTO.getLogin()).isPresent() 
+							&& !userRepository.findOneByEmail(managedUserDTO.getEmail()).isPresent()) {
+						newUser = userService.createUser(managedUserDTO);
+						String baseUrl = request.getScheme() + // "http"
+								"://" + // "://"
+								request.getServerName() + // "myhost"
+								":" + // ":"
+								request.getServerPort() + // "80"
+								request.getContextPath(); // "/myContextPath" or "" if
+						// deployed in root context
+						mailService.sendCreationEmail(newUser, baseUrl);
+
+					}
+				}
+			}
+			return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
+					.headers(HeaderUtil.createAlert("user-management.created", newUser.getLogin())).body(newUser);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			return ResponseEntity.badRequest()
+					.headers(HeaderUtil.createFailureAlert("user-management", "LoadFileError", "Error Loading User from File"))
+					.body(null);		
+			}
 	}
 }
 

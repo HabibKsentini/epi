@@ -2,7 +2,7 @@
 
 angular.module('epiApp').controller(
 		'ExerciseController',
-		function($scope, Exercise, Group, $filter, Upload, File) {
+		function($scope, Exercise, Group, $filter, Upload, File, $state) {
 			/* jshint validthis: true */
 			var vm = this;
 			vm.exercise = {};
@@ -12,12 +12,17 @@ angular.module('epiApp').controller(
 			vm.downloadFile = downloadFile;
 			vm.updateExercise = updateExercise;
 			vm.cancel = cancel; 
+			
+			vm.addMediaLink = addMediaLink;
+			vm.newMediaLink = "" ;
+			vm.removeMediaLink = removeMediaLink;
+		
 			// //////////
 
 			initExercise();
 
 			// //////////
-
+			
 			function initExercise() {
 				Exercise.getEmpty().then(function(exercise) {
 					vm.exercise = exercise;
@@ -26,7 +31,7 @@ angular.module('epiApp').controller(
 			;
 
 			function cancel() {
-				Exercise.remove($stateParams.id).then(function() {
+				Exercise.remove(vm.exercise.id).then(function() {
 					$state.go("home");
 				});
 			}
@@ -85,9 +90,28 @@ angular.module('epiApp').controller(
 			;
 
 			function updateExercise() {
+				if (vm.exercise.students.length === 0){
+					vm.exercise.students = vm.exercise.allStudents;
+				}
 				Exercise.update(vm.exercise);
 			}
 
+			
+			function addMediaLink(){
+				if (vm.newMediaLink != ""){
+				vm.exercise.mediaUrls.push(vm.newMediaLink);
+				vm.newMediaLink = ""
+				}
+			};
+
+			function removeMediaLink(media){
+
+				for (var i = 0; i < vm.exercise.mediaUrls.length; i++) {
+					if (media === vm.exercise.mediaUrls[i]){
+						vm.exercise.mediaUrls.splice(i, 1);
+					}
+				}
+			};
 			// //////////
 
 			$scope.isOpen = true;

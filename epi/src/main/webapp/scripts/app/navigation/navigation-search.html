@@ -1,9 +1,7 @@
 
 <div class="block full">
 	<div class="block-title">
-		<h2>
-			<span> CritÃ¨res de recherche</span>
-		</h2>
+		<h2 translate="searchTitle"></h2>
 	</div>
 	<form ng-submit="NavigationSearchController.refreshPage()" name="form"
 		role="form" novalidate>
@@ -64,8 +62,7 @@
 </div>
 <div class="block full">
 	<div class="block-title">
-		<h2>
-			<span>RÃ©sultats de recherche</span>
+		<h2 translate="searchResult">
 		</h2>
 	</div>
 
@@ -123,8 +120,7 @@
 	</div>
 
 	<h2 class="text-center"
-		ng-show="NavigationSearchController.exercises.length === 0">Aucune
-		donnée trouvée</h2>
+		ng-show="NavigationSearchController.exercises.length === 0"  translate="exercise.noDataFound"></h2>
 </div>
 
 

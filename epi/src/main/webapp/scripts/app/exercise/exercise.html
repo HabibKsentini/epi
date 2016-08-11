@@ -128,7 +128,7 @@
 			<label for="students" class="col-md-3 col-lg-2 control-label"
 				translate="exercise.students">Students</label>
 			<div class="col-md-9 col-lg-10">
-				<select chosen multiple allow-single-deselect="true" required
+				<select chosen multiple allow-single-deselect="true" 
 					data-placeholder="{{'exercise.students.placeholder' | translate}}"
 					no-results-text="'{{'exercise.students.placeholder' | translate}}'"
 					ng-model="ExerciseController.exercise.students"
@@ -153,10 +153,71 @@
 		</div>
 	</div>
 	</uib-accordion-group> </uib-accordion>
+	
+	
+		<uib-accordion> <uib-accordion-group
+		ng-init="isOpen = true" is-open="isOpen"
+		heading="{{'exercise.media.medias' | translate}}">
+	<div class="panel-body">
+
+	<div class="form-group">
+			<label for="compose-message" class="col-md-3 col-lg-2 control-label"
+				translate="exercise.media.newlink">new Link</label>
+			<span class="col-md-9 col-lg-8">
+				<input ng-model="ExerciseController.newMediaLink"
+					placeholder="{{ 'exercise.media.medialink.placeholder' | translate}}"
+					class="form-control" name="compose-message" id="compose-message" />
+				
+			</span>
+			<button class="btn btn-sm btn-primary col-md-3 col-lg-2"
+						ng-click="ExerciseController.addMediaLink();">
+						<i class="fa fa-plus"></i> <span
+							translate="entity.action.addlink">Add Link</span>
+					</button>
+		</div>
+
+
+
+		<table ng-show="ExerciseController.exercise.mediaUrls.length > 0"
+			class="table table-striped table-bordered table-vcenter remove-margin-bottom">
+			<thead>
+				<tr>
+					<th class="text-center"><span translate="exercise.media.medialink">Lien</span>
+					</th>
+					
+					<th class="text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-show="ExerciseController.exercise.mediaUrls.length > 0"
+					ng-repeat="media in ExerciseController.exercise.mediaUrls ">
+					<td class="text-center">{{media}}</td>
+					<td class="text-center">
+						<div class="btn-group btn-group-xs">
+							<a class="btn btn-default" href="javascript:void(0)"
+								uib-tooltip="{{'entity.action.delete' | translate}}"><i
+								class="fa fa-minus"
+								ng-click="ExerciseController.removeMediaLink(media);"></i></a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 class="text-center" ng-show="ExerciseController.exercise.mediaUrls.length === 0" translate="exercise.media.noMedialink">
+			</h3>
+
+	</div>
+
+	</uib-accordion-group> </uib-accordion>
+	
+	
+	
+	
 	<uib-accordion> <uib-accordion-group is-open="isOpen"
 		heading="{{'entity.action.addcontent' | translate}}">
 	<div class="panel-body">
-		<div class="form-group">
+		<div class="form-group">				
 			<div text-angular ng-model="ExerciseController.exercise.rawContent"></div>
 		</div>
 	</div>
@@ -209,8 +270,9 @@
 			</tbody>
 		</table>
 
-		<h2 class="text-center" ng-show="displayedfiles.length === 0">Aucun
-			fichier n'a été chargé</h2>
+			<h3 class="text-center" ng-show="displayedfiles.length === 0" translate="exercise.file.noFileUploaded">
+			</h3>
+			
 
 	</div>
 

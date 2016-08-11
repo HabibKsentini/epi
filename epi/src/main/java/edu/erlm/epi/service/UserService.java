@@ -14,21 +14,28 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import edu.erlm.epi.domain.Authority;
 import edu.erlm.epi.domain.User;
 import edu.erlm.epi.domain.exercise.TeachingExercise;
+import edu.erlm.epi.domain.school.Admin;
+import edu.erlm.epi.domain.school.Student;
+import edu.erlm.epi.domain.school.Teacher;
 import edu.erlm.epi.repository.AuthorityRepository;
 import edu.erlm.epi.repository.PersistentTokenRepository;
 import edu.erlm.epi.repository.SearchSpecification;
 import edu.erlm.epi.repository.UserRepository;
 import edu.erlm.epi.repository.exercise.TeachingExerciseRepository;
+import edu.erlm.epi.security.AuthoritiesConstants;
+import edu.erlm.epi.repository.school.StudentRepository;
 import edu.erlm.epi.security.SecurityUtils;
 import edu.erlm.epi.service.util.RandomUtil;
 import edu.erlm.epi.web.rest.dto.ManagedUserDTO;
@@ -47,6 +54,9 @@ public class UserService {
 
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private StudentRepository studentRepository;
     
     @Inject
     private  TeachingExerciseRepository teachingExerciseRepository;
@@ -125,28 +135,35 @@ public class UserService {
     }
 
     public User createUser(ManagedUserDTO managedUserDTO) {
-        User user = new User();
-        user.setLogin(managedUserDTO.getLogin());
-        user.setFirstName(managedUserDTO.getFirstName());
-        user.setLastName(managedUserDTO.getLastName());
-        user.setEmail(managedUserDTO.getEmail());
-        if (managedUserDTO.getLangKey() == null) {
-            user.setLangKey("en"); // default language is English
-        } else {
-            user.setLangKey(managedUserDTO.getLangKey());
-        }
-        if (managedUserDTO.getAuthorities() != null) {
+    	 User user = new User();
+    	if (managedUserDTO.getAuthorities() != null) {
+    		if (managedUserDTO.getAuthorities().contains(AuthoritiesConstants.ADMIN)){
+    			user = new Admin();
+    		}else if (managedUserDTO.getAuthorities().contains(AuthoritiesConstants.TEACHER)){
+    			user = new Teacher();
+    		}else if (managedUserDTO.getAuthorities().contains(AuthoritiesConstants.STUDENT)){
+    			user = new Student();
+    		}
+    		
             Set<Authority> authorities = new HashSet<>();
             managedUserDTO.getAuthorities().stream().forEach(
                 authority -> authorities.add(authorityRepository.findOne(authority))
             );
             user.setAuthorities(authorities);
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+    	
+       
+        user.setLogin(managedUserDTO.getLogin());
+        user.setFirstName(managedUserDTO.getFirstName());
+        user.setLastName(managedUserDTO.getLastName());
+        user.setEmail(managedUserDTO.getEmail());
+        user.setLangKey(managedUserDTO.getLangKey() == null ? "en" : managedUserDTO.getLangKey()); // default language is English
+        
+        String encryptedPassword = passwordEncoder.encode(StringUtils.isEmpty(managedUserDTO.getPassword()) ? RandomUtil.generatePassword(): managedUserDTO.getPassword());
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(ZonedDateTime.now());
-        user.setActivated(true);
+        user.setActivated(managedUserDTO.isActivated());
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
         return user;
@@ -188,6 +205,12 @@ public class UserService {
 			userRepository.save(currentUser);
 		}
 	}
+	
+	
+	    public User getCurrentUserWithoutAuthorities() {
+		 User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get(); 
+		 return currentUser;
+	    }
     
     
     @Transactional(readOnly = true)
@@ -218,6 +241,15 @@ public class UserService {
 		Page<User> page = userRepository.findAll(spec, pageable); 
 		return page;
     }
+    
+    public Page<Student> searchStudents(String searchText, Pageable pageable){
+    	if(searchText == null){
+    		searchText = StringUtils.EMPTY; 
+    	}
+    	searchText = searchText.trim(); 
+		return studentRepository.search(searchText, pageable);
+    }
+    
 
     /**
      * Persistent Token are used for providing automatic authentication, they should be automatically deleted after

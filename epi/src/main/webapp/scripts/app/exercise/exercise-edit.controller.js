@@ -2,7 +2,7 @@
 
 angular.module('epiApp').controller(
 		'ExerciseEditController',
-		function(Exercise, $stateParams, File, $filter, Group, ConfirmationDialogService, $state) {
+		function(Exercise, $stateParams, File, $filter, Upload, Group, ConfirmationDialogService, $state) {
 
 			var vm = this;
 			vm.exercise = {};
@@ -13,6 +13,7 @@ angular.module('epiApp').controller(
 			vm.uploadFile = uploadFile;
 			vm.downloadFile = downloadFile;
 			vm.updateExercise = updateExercise;
+			vm.remove = remove;
 			vm.addMediaLink = addMediaLink;
 			vm.newMediaLink = "" ;
 			vm.removeMediaLink = removeMediaLink;
@@ -118,7 +119,7 @@ angular.module('epiApp').controller(
 				vm.exercise.mediaUrls.push(vm.newMediaLink);
 				vm.newMediaLink = ""
 				}
-			}
+			};
 
 			function removeMediaLink(media){
 
@@ -127,7 +128,7 @@ angular.module('epiApp').controller(
 						vm.exercise.mediaUrls.splice(i, 1);
 					}
 				}
-			}
+			};
 		});
 
 

@@ -16,6 +16,9 @@ public class GroupDTO {
 	private String schoolYear;
 	
 	public static GroupDTO valueOf(Group group) {
+		if (group == null){
+			return null;
+		}
 		GroupDTO groupDTO = new GroupDTO();
 		groupDTO.setId(group.getId());
 		groupDTO.setName(group.getName());

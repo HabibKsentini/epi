@@ -16,6 +16,8 @@ public class ManagedUserDTO extends UserDTO {
     private String lastModifiedBy;
 
     private ZonedDateTime lastModifiedDate;
+    
+    private Long countTeachingExercise;
 
     public ManagedUserDTO() {
     }
@@ -26,6 +28,13 @@ public class ManagedUserDTO extends UserDTO {
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
+        this.countTeachingExercise = user.getCountTeachingExercise();
+        this.countTeachingExercise = user.getCountTeachingExercise();
+    }
+    
+    public ManagedUserDTO(String login, String password, String firstName, String lastName,
+    		String email, boolean activated, String langKey, Set<String> authorities) {
+    	super( login,  password,  firstName,  lastName, email,  activated,  langKey,  authorities);
     }
 
     public Long getId() {
@@ -59,14 +68,21 @@ public class ManagedUserDTO extends UserDTO {
     public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
+    
+    
 
-    @Override
+    public Long getCountTeachingExercise() {
+		return countTeachingExercise;
+	}
+
+	@Override
     public String toString() {
         return "ManagedUserDTO{" +
             "id=" + id +
             ", createdDate=" + createdDate +
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
+            ", countTeachingExercise=" + countTeachingExercise +
             "} " + super.toString();
     }
 }

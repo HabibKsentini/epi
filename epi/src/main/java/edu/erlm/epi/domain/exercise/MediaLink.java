@@ -1,5 +1,12 @@
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+package edu.erlm.epi.domain.exercise;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -13,7 +20,6 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "t_media_link")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class MediaLink extends AbstractAuditingEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
