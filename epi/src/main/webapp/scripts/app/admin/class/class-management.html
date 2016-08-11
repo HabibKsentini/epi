@@ -1,0 +1,148 @@
+<div>
+	<div class="block full">
+		<div class="block-title">
+			<h2>
+				<span>Critères de recherche</span>
+			</h2>
+		</div>
+		<form ng-submit="loadAll()" name="form" role="form" novalidate>
+			<div class="row">
+
+				<div class="col-md-3 col-sm-6">
+					<div class="form-group">
+						<label for="inputWebsite" class="control-label"
+							translate="class-management.schoolYear">schoolYear</label>
+						<div class="input-icon right">
+
+							<select ng-model="classSearchModel.schoolYearId"
+								data-placeholder="Sélectionnez une année scolaire"
+								ng-options="o.id as o.name  for o in schoolYears"
+								class="form-control select-chosen">
+							</select>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-3 col-sm-6">
+					<div class="form-group">
+						<label for="inputWebsite" class="control-label"
+							translate="class-management.level">level</label>
+						<div class="input-icon right">
+
+
+							<select ng-model="classSearchModel.levelId"
+								data-placeholder="Sélectionnez un  profile"
+								ng-options="o.id as o.name for o in levels"
+								class="form-control select-chosen">
+							</select>
+
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-3 col-sm-6">
+					<div class="form-group">
+						<label for="inputWebsite" class="control-label"
+							translate="class-management.name">Nom</label>
+						<div class="input-icon right">
+							<input id="inputName" type="text" placeholder="1,2,3,4..."
+								ng-model="classSearchModel.name" class="form-control">
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-actions text-right ">
+				<button type="submit" class="btn btn-sm btn-primary"
+					title="{{'entity.action.search' | translate}}">
+					<span class="glyphicon glyphicon-search"></span><span
+						translate="entity.action.search">Chercher</span>
+				</button>
+				<button type="button" ng-click="resetClassSearchModel()"
+					class="btn btn-sm btn-warning"
+					title="{{'entity.action.reset' | translate}}">
+					<span class="glyphicon glyphicon-refresh"></span> <span
+						translate="entity.action.reset">Réinitialiser</span>
+				</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="block full">
+		<div class="block-title">
+			<h2>
+				<span translate="class-management.home.title">Users</span>
+			</h2>
+		</div>
+
+		<div class="block-section clearfix ">
+			<div class="form-group form-actions">
+				<button class="btn btn-sm btn-primary pull-right" type="button"
+					ui-sref="class-management.new">
+					<span class="glyphicon glyphicon-plus"></span> <span
+						translate="class-management.home.createLabel">Create a new
+						Group</span>
+				</button>
+			</div>
+		</div>
+		<div class="table-responsive remove-margin-bottom">
+			<table
+				class="table table-striped table-bordered table-vcenter remove-margin-bottom"
+				nv-table update-fn="loadAll()" sorting="sort">
+				<thead>
+					<tr>
+						<th translate="class-management.completeName">Complete name</th>
+						<th sort-by="activated" translate="class-management.schoolYear">schoolarYear</th>
+						<th translate="class-management.level">Level</th>
+						<th sort-by="name" translate="class-management.name">Name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="group in groups track by group.id">
+					
+						<td>{{group.completeName}}</td>
+						<td>{{group.schoolYear.name}}</td>
+						<td>{{group.level.name}}</td>
+						<td>{{group.name}}</td>
+					
+						<td class="text-center">
+							<div class="btn-group btn-group-xs">
+								<button type="submit"
+									ui-sref="user-management-detail({login:user.login})"
+									class="btn btn-default">
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</button>
+								<button type="submit"
+									ui-sref="user-management.edit({login:user.login})"
+									class="btn btn-default">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+								<button type="submit"
+									ui-sref="user-management.password({login:user.login})"
+									class="btn  btn-default">
+									<span class="fa fa-key"></span>
+								</button>
+								<button type="submit"
+									ui-sref="user-management.delete({login:user.login})"
+									class="btn btn-danger "
+									ng-disabled="currentAccount.login==user.login">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<uib-pagination class="pagination-sm" total-items="totalItems"
+				ng-model="page" ng-change="loadAll()"></uib-pagination>
+		</div>
+	</div>
+	
+
+</div>

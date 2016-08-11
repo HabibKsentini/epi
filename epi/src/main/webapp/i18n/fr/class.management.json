@@ -1,0 +1,24 @@
+{
+    "class-management": {
+        "home": {
+            "title": "Classes",
+            "createLabel": "Créer une nouvelle classe",
+            "createOrEditLabel": "Créer ou éditer une classe"
+        },
+        "created": "A new user is created with identifier {{ param }}",
+        "updated": "An user is updated with identifier {{ param }}",
+        "deleted": "An user is deleted with identifier {{ param }}",
+        "delete": {
+            "question": "Etes-vous certain de vouloir supprimer la classe {{ name }} ?"
+        },
+        "detail": {
+            "title": "Classe"
+        }, 
+        
+        "level" : "Niveau", 
+        "schoolYear" : "Année scolaire", 
+        "name" : "Nom", 
+        "completeName" : "Nom complet"
+    }
+}
+
