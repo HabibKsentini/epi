@@ -34,3 +34,17 @@ angular.module('epiApp')
         });
     });
 
+angular.module('epiApp')
+.factory('Students', function ($resource) {
+    return $resource('api/students/:id', {}, {
+            'query': {method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            }
+        });
+    });
+

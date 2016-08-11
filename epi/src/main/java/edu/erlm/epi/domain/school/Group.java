@@ -1,6 +1,7 @@
 package edu.erlm.epi.domain.school;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,6 +26,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import edu.erlm.epi.domain.AbstractAuditingEntity;
+import edu.erlm.epi.repository.Searchable;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,9 +38,10 @@ import lombok.ToString;
 @Table(name = "t_class")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @ToString
-public class Group extends AbstractAuditingEntity implements Serializable {
+public class Group extends AbstractAuditingEntity implements Serializable, Searchable {
 
 	private static final long serialVersionUID = 1L;
+	private static final String[] ATTRIBUTES = { "name", "level", "schoolYear"};
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t_class_id_seq")
@@ -91,11 +94,30 @@ public class Group extends AbstractAuditingEntity implements Serializable {
 	}
 
 	public String getCompleteName() {
-		this.completeName = ""; 
+		this.completeName = "";
 		if (this.level != null && this.schoolYear != null) {
 			this.completeName = this.level.getName() + " " + this.name + " " + this.schoolYear.getName();
 		}
 		return this.completeName;
+	}
+
+	@Override
+	public Object get(String attributeName) {
+		switch (attributeName) {
+		case "name":
+			return name;
+		case "level":
+			return level;
+		case "schoolYear":
+			return schoolYear;
+		}
+		return null;
+	}
+
+	@Override
+	@Transient
+	public List<String> getAttributes() {
+		return Arrays.asList(ATTRIBUTES);
 	}
 
 }

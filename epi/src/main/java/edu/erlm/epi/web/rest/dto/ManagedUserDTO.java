@@ -1,6 +1,7 @@
 package edu.erlm.epi.web.rest.dto;
 
 import java.time.ZonedDateTime;
+import java.util.Set;
 
 import edu.erlm.epi.domain.User;
 

@@ -8,7 +8,6 @@
 			getEmbeddedDataWithout_Links : getEmbeddedDataWithout_Links
 		}
 		return service;
-
 		
 		function getEmbeddedDataWithout_Links(data) {
 			data = angular.fromJson(data);

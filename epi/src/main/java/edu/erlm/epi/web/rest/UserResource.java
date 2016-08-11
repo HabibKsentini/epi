@@ -31,12 +31,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.codahale.metrics.annotation.Timed;
 
 import edu.erlm.epi.domain.Authority;
 import edu.erlm.epi.domain.User;
+import edu.erlm.epi.domain.school.Student;
 import edu.erlm.epi.repository.AuthorityRepository;
 import edu.erlm.epi.repository.UserRepository;
 import edu.erlm.epi.security.AuthoritiesConstants;
@@ -182,6 +185,19 @@ public class UserResource {
 		HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
 		return new ResponseEntity<>(managedUserDTOs, headers, HttpStatus.OK);
 	}
+	
+	/**
+	 * GET /users -> get all users.
+	 */
+	@RequestMapping(value = "/students", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@Timed
+	@Transactional(readOnly = true)
+	public ResponseEntity<List<Student>> getAllUsers(String searchText, Pageable pageable) throws URISyntaxException {
+		Page<Student> page = userService.searchStudents(searchText, pageable);
+		HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/students");
+		return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+	}
+	
 
 	/**
 	 * GET /users/:login -> get the "login" user.

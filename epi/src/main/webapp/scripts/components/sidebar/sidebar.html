@@ -42,13 +42,15 @@
 						translate="global.menu.navigation.main">Navigation par theme</span></a></li>
 
 
-				<li has-authority="ROLE_ADMIN"><a ui-sref-active="active" href="" class="active"
-					data-toggle="collapse" href="javascript:void(0)"
-					uib-dropdown-toggle ng-click="check(3)"> <i
+				<li has-authority="ROLE_ADMIN"><a ui-sref-active="active"
+					href="" class="active" data-toggle="collapse"
+					href="javascript:void(0)" uib-dropdown-toggle ng-click="check(3)">
+						<i
 						ng-class="collapseVar!=3 ? 'glyphicon-menu-left' : 'glyphicon-menu-down'"
 						class="glyphicon  sidebar-nav-indicator sidebar-nav-mini-hide"></i>
 						<i class="glyphicon glyphicon-tower sidebar-nav-icon"></i><span
-						class="sidebar-nav-mini-hide" translate="global.menu.admin.main">Administration</span></a>
+						class="sidebar-nav-mini-hide" translate="global.menu.admin.main">Administration</span>
+				</a>
 
 
 					<ul class="collapse" uib-collapse="collapseVar!=3">
@@ -57,6 +59,12 @@
 								class="glyphicon glyphicon-user"></span> &#xA0;<span
 								translate="global.menu.admin.user-management">User
 									management</span></a></li>
+
+						<li ui-sref-active="active"><a ui-sref="class-management"><span
+								class="fa fa-users"></span> &#xA0;<span
+								translate="global.menu.admin.class-management">Class
+									Management</span></a></li>
+
 						<li ui-sref-active="active"><a ui-sref="metrics"><span
 								class="glyphicon glyphicon-dashboard"></span> &#xA0;<span
 								translate="global.menu.admin.metrics">Metrics</span></a></li>
@@ -68,6 +76,7 @@
 						<li ui-sref-active="active"><a ui-sref="audits"><span
 								class="glyphicon glyphicon-bell"></span> &#xA0;<span
 								translate="global.menu.admin.audits">Audits</span></a></li>
+
 
 
 					</ul></li>

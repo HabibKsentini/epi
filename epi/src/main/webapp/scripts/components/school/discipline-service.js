@@ -17,6 +17,22 @@ angular.module('epiApp').factory(
 		});
 
 angular.module('epiApp').factory(
+		'SchoolYear',
+		function($resource, HateoasDataUtil) {
+			return $resource('/schoolYears/:id', {}, {
+				'query' : {
+					method : 'GET',
+					isArray : true,
+					cache : true,
+					transformResponse : function(data) {
+						return HateoasDataUtil
+								.getEmbeddedDataWithout_Links(data);
+					}
+				}
+			});
+		});
+
+angular.module('epiApp').factory(
 		'Topic',
 		function($resource, HateoasDataUtil) {
 			
@@ -81,7 +97,7 @@ angular.module('epiApp').factory(
 			});
 			return Level;
 		});
-
+///groups/search/all
 angular.module('epiApp').factory(
 		'Group',
 		function($q, $resource, HateoasDataUtil) {
@@ -89,7 +105,6 @@ angular.module('epiApp').factory(
 				'query' : {
 					method : 'GET',
 					isArray : true,
-					cache : true,
 					transformResponse : function(data) {
 						return HateoasDataUtil
 								.getEmbeddedDataWithout_Links(data);
@@ -126,6 +141,15 @@ angular.module('epiApp').factory(
 					transformResponse : function(data) {
 						return HateoasDataUtil
 								.getEmbeddedDataWithout_Links(data);
+					}
+				}, 
+				
+				'search' : {
+					method : 'GET',
+					isArray : true,
+					url : '/api/groups',
+					transformResponse : function(data) {
+						return JSON.parse(data);
 					}
 				}
 

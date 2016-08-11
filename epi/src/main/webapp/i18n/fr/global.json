@@ -33,6 +33,7 @@
 			{
 				"main": "Administration",
 				"user-management": "Gestion utilisateur",
+				"class-management": "Gestion classe",
 				"tracker": "Suivi des utilisateurs",
 				"metrics": "Métriques",
 				"health": "Diagnostics",

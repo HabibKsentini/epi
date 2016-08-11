@@ -2,6 +2,7 @@ package edu.erlm.epi.domain.school;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class SchoolYear implements Serializable {
 
 	@NotNull
 	@Size(min = 9, max = 9)
+	@Column(unique=true)
 	private String name;
 	
 	@NotNull

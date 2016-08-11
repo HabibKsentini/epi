@@ -10,6 +10,7 @@ import edu.erlm.epi.domain.exercise.TeachingExercise;
 import edu.erlm.epi.domain.school.Discipline;
 import edu.erlm.epi.domain.school.Group;
 import edu.erlm.epi.domain.school.Level;
+import edu.erlm.epi.domain.school.SchoolYear;
 import edu.erlm.epi.domain.school.Student;
 import edu.erlm.epi.domain.school.Teacher;
 import edu.erlm.epi.domain.school.Topic;
@@ -20,7 +21,7 @@ public class ApiWebMvcConfiguration extends RepositoryRestMvcConfiguration {
 	@Override
 	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		Class<?>[] domainTypesToExposeIds = { Topic.class, Discipline.class, Level.class, Group.class, Student.class,
-				Teacher.class, File.class , TeachingExercise.class};
+				Teacher.class, File.class , TeachingExercise.class, SchoolYear.class};
 		config.exposeIdsFor(domainTypesToExposeIds);
 		config.setReturnBodyOnUpdate(true);
 		config.setReturnBodyOnCreate(true);
