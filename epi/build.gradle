@@ -13,9 +13,10 @@ buildscript {
         classpath group: 'org.springframework.build.gradle', name: 'propdeps-plugin', version: '0.0.7'
         classpath group: 'com.moowork.gradle', name: 'gradle-node-plugin', version: '0.11'
   	    classpath group: 'com.moowork.gradle', name: 'gradle-gulp-plugin', version: '0.11'
-    }
+  }
 }
 
+apply plugin: 'net.ltgt.apt'
 apply plugin: 'java'
 sourceCompatibility=1.8
 targetCompatibility=1.8
@@ -24,6 +25,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'propdeps'
 defaultTasks 'bootRun'
+
 
 bootRepackage {
    mainClass = 'edu.erlm.epi.Application'
@@ -48,6 +50,7 @@ test {
     include '**/*UnitTest*'
     include '**/*IntTest*'
 }
+
 
 task cucumberTest(type: Test) {
     include '**/CucumberTest*'
@@ -160,6 +163,8 @@ dependencies {
     compile group: 'fr.ippon.spark.metrics', name: 'metrics-spark-reporter', version: metrics_spark_reporter_version
     compile group: 'org.mapstruct', name: 'mapstruct-jdk8', version: mapstruct_version
     compile group: 'org.projectlombok', name: 'lombok', version: lombok_version
+    provided group: 'org.projectlombok', name: 'lombok', version: lombok_version
+    apt  group: 'org.projectlombok', name: 'lombok', version: lombok_version
     
     
     testCompile group: 'com.jayway.awaitility', name: 'awaitility', version: awaility_version
