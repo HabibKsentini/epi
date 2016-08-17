@@ -32,33 +32,20 @@ angular.module('epiApp')
                 },
                 views: {
                     'content@site': {
-                        templateUrl: '/scripts/app/admin/class/class-management-dialog.html',
-                        controller: 'ClassManagementDialogController'
+                        templateUrl: '/scripts/app/admin/class/class-management-detail.html',
+                        controller: 'classManagementDetailController'
                     }
                 },
                 resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('user.management');
-                        return $translate.refresh();
-                    }]
+                	  translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                          $translatePartialLoader.addPart('class.management');
+                          return $translate.refresh();
+                      }],
+                	groupEntity : [ 'Group','$stateParams',
+									function(Group, $stateParams) {
+										return Group.get({
+											"id" : $stateParams.id									});
+									} ]
                 }
             })
-            .state('class-management.new', {
-                parent: 'class-management',
-                url: '/new',
-                data: {
-                	 authorities: ['ROLE_ADMIN'],
-                },
-                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                    $uibModal.open({
-                        templateUrl: '/scripts/app/admin/class/class-management-dialog.html',
-                        controller: 'ClassManagementDialogController',
-                        size: 'lg'
-                    }).result.then(function(result) {
-                        $state.go('class-management', null, { reload: true });
-                    }, function() {
-                        $state.go('class-management');
-                    })
-                }]
-            })  
     });

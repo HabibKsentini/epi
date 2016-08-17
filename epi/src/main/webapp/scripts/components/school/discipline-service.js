@@ -35,22 +35,22 @@ angular.module('epiApp').factory(
 angular.module('epiApp').factory(
 		'Topic',
 		function($resource, HateoasDataUtil) {
-			
-			var images = [  'assets/images/themeImg/health.png',
-							'assets/images/themeImg/arts.png', 
-							'assets/images/themeImg/ecologie.png',
-							'assets/images/themeImg/citizen.png',
-							'assets/images/themeImg/antique.png',
-							'assets/images/themeImg/language.png',
-							'assets/images/themeImg/economie.png',
-							'assets/images/themeImg/techno.png' ];
+
+			var images = [ 'assets/images/themeImg/health.png',
+					'assets/images/themeImg/arts.png',
+					'assets/images/themeImg/ecologie.png',
+					'assets/images/themeImg/citizen.png',
+					'assets/images/themeImg/antique.png',
+					'assets/images/themeImg/language.png',
+					'assets/images/themeImg/economie.png',
+					'assets/images/themeImg/techno.png' ];
 
 			return $resource('/topics/:id', {}, {
 				'query' : {
 					method : 'GET',
 					isArray : true,
 					cache : true,
-					 params: 'sort_by=id',
+					params : 'sort_by=id',
 
 					transformResponse : function(data) {
 						var data = HateoasDataUtil
@@ -97,7 +97,7 @@ angular.module('epiApp').factory(
 			});
 			return Level;
 		});
-///groups/search/all
+// /groups/search/all
 angular.module('epiApp').factory(
 		'Group',
 		function($q, $resource, HateoasDataUtil) {
@@ -110,7 +110,24 @@ angular.module('epiApp').factory(
 								.getEmbeddedDataWithout_Links(data);
 					}
 				},
+				'get' : {
+					method : 'GET',
+					url : 'api/groups/:id',
+					transformResponse : function(data) {
+						data = angular.fromJson(data);
+						return data;
+					}
+				},
 
+				'delete' : {
+					method : 'DELETE',
+					url : 'api/groups/:id'
+				},
+				
+				'save' : {
+					method : 'POST',
+					url : 'api/groups'
+				},
 				'findByLevelId' : {
 					method : 'GET',
 					isArray : true,
@@ -142,8 +159,8 @@ angular.module('epiApp').factory(
 						return HateoasDataUtil
 								.getEmbeddedDataWithout_Links(data);
 					}
-				}, 
-				
+				},
+
 				'search' : {
 					method : 'GET',
 					isArray : true,

@@ -24,7 +24,6 @@ angular.module('epiApp')
             restrict: 'E',
             template: '<div class="alerts" ng-cloak="">' +
                             '<div ng-repeat="alert in alerts" ng-class="[alert.position, {\'toast\': alert.toast}]">' +
-                                '<uib-alert ng-cloak="" type="{{alert.type}}" close="alert.close(alerts)"><pre>{{ alert.msg }}</pre></uib-alert>' +
                             '</div>' +
                       '</div>',
             controller: ['$scope',
@@ -86,7 +85,7 @@ angular.module('epiApp')
                                     type: "danger",
                                     msg: key,
                                     params: data,
-                                    timeout: 5000,
+                                    timeout: 50000,
                                     toast: AlertService.isToast(),
                                     scoped: true
                                 },

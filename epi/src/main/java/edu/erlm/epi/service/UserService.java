@@ -156,7 +156,7 @@ public class UserService {
         user.setFirstName(managedUserDTO.getFirstName());
         user.setLastName(managedUserDTO.getLastName());
         user.setEmail(managedUserDTO.getEmail());
-        user.setLangKey(managedUserDTO.getLangKey() == null ? "en" : managedUserDTO.getLangKey()); // default language is English
+        user.setLangKey(managedUserDTO.getLangKey() == null ? "fr" : managedUserDTO.getLangKey()); // default language is french
         
         String encryptedPassword = passwordEncoder.encode(StringUtils.isEmpty(managedUserDTO.getPassword()) ? RandomUtil.generatePassword(): managedUserDTO.getPassword());
         user.setPassword(encryptedPassword);

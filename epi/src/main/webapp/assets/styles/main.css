@@ -902,10 +902,9 @@ a.sidebar-brand:focus, a.sidebar-brand:hover, a.sidebar-title:focus, a.sidebar-t
 }
 
 .sidebar-nav a.active {
-	padding-left: 5px;
-	border-left: 5px solid #1bbae1;
-	background: url(../img/template/ie8_opacity_dark_30.png);
-	background: rgba(0, 0, 0, .3)
+    padding-left: 5px;
+    border-left: 5px solid rgb(27, 186, 225);
+    background: rgba(0, 0, 0, 0.298039);
 }
 
 .sidebar-nav a>.sidebar-nav-icon {

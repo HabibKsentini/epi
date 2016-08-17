@@ -119,11 +119,7 @@ public class UserResource {
 			return ResponseEntity.badRequest()
 					.headers(HeaderUtil.createFailureAlert("user-management", "userexists", "Login already in use"))
 					.body(null);
-		} else if (userRepository.findOneByEmail(managedUserDTO.getEmail()).isPresent()) {
-			return ResponseEntity.badRequest()
-					.headers(HeaderUtil.createFailureAlert("user-management", "emailexists", "Email already in use"))
-					.body(null);
-		} else {
+		}else {
 			User newUser = userService.createUser(managedUserDTO);
 			String baseUrl = request.getScheme() + // "http"
 					"://" + // "://"

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,7 +62,7 @@ public class Group extends AbstractAuditingEntity implements Serializable, Searc
 	@ManyToOne(fetch = FetchType.LAZY)
 	private SchoolYear schoolYear;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade= CascadeType.MERGE)
 	@JoinTable(name = "t_class_student_junc", joinColumns = {
 			@JoinColumn(name = "class_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "student_id", referencedColumnName = "id") })

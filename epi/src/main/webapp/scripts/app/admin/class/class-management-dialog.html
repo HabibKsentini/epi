@@ -1,4 +1,4 @@
-<form name="editForm" role="form" novalidate ng-submit="save()"
+<form name="editForm" role="form" novalidate ng-submit="saveGroup()"
 	show-validation>
 
 	<div class="modal-header">
@@ -9,11 +9,11 @@
 			edit a Class</h4>
 	</div>
 	<div class="modal-body">
-
+<jh-alert-error></jh-alert-error>
 		<uib-accordion close-others="oneAtATime">
 		<div uib-accordion-group class="panel-default"
 			heading="Classe"
-			is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+			is-open="true" is-disabled="status.isFirstDisabled">
 
 			<div class="form-group">
 				<label translate="global.field.id">ID</label> <input type="text"
@@ -22,7 +22,7 @@
 
 			<div class="form-group">
 				<label class="control-label" translate="class-management.name">Name</label>
-				<input type="number" class="form-control" name="name"
+				<input  class="form-control" name="name"
 					ng-model="class.name" ng-maxlength="2">
 
 				<div ng-show="editForm.name.$invalid">
@@ -39,7 +39,7 @@
 
 				<select ng-model="class.level" name="level"
 					data-placeholder="Sélectionnez un niveau"
-					ng-options="o.id as o.name for o in levels"
+					ng-options="o as o.name for o in levels track by o.id"
 					class="form-control select-chosen">
 				</select>
 
@@ -48,7 +48,7 @@
 				<label translate="class-management.schoolYear">SchoolYear</label> <select
 					name="schoolYear" ng-model="class.schoolYear"
 					data-placeholder="Sélectionnez une année scolaire"
-					ng-options="o.id as o.name  for o in schoolYears"
+					ng-options="o as o.name  for o in schoolYears track by o.id"
 					class="form-control select-chosen">
 				</select>
 .			</div>
@@ -62,12 +62,12 @@
 			heading="Etudiants">
 			<duallist template-url="scripts/components/widget/duallist.tmp.html"
 				duallist-option="options" leftscope="students"
-				rightscope="rightValue" addscope="addValue"
+				rightscope="class.students" addscope="addValue"
 				removescope="removeValue"></duallist>
+				
 		</div>
 		</uib-accordion>
 		
-		{{classes}}
 
 
 	</div>
@@ -84,3 +84,5 @@
 		</button>
 	</div>
 </form>
+
+

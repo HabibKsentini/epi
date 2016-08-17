@@ -38,8 +38,8 @@ public class Topic implements Serializable {
 	@Size(min = 1, max = 255)
 	private String name;
 	
-	@Column(name = "topic_color")
-	private String topicColor;
+//	@Column(name = "topic_color")
+//	private String topicColor;
 
 
 	@Override

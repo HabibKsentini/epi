@@ -5,15 +5,15 @@
             <span class="info" ng-if="leftscope.length > 0">Showing all {{leftscope.length}}</span>
         <span class="info" ng-if="leftscope.length == 0">Empty List</span>
         </span>
-        <form class="form-inline">
+        <div class="form-inline">
             <div>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="leftsearch" placeholder="Search">
+                    <input type="text" class="form-control" id="leftsearch" placeholder="Rechercher">
                     <div class="input-group-addon">
                         <input title="toggle all" class="all pull-right" ng-model="leftSelectAll" ng-change="selectAllLeftContainer()" type="checkbox"> </div>
                 </div>
             </div>
-        </form>
+        </div>
 
         <div class="left-sub-container">
             <div class="list-group" id="list1">
@@ -24,8 +24,8 @@
         </div>
     </div>
     <div class="col-md-2 v-center">
-        <button id="moveRightButton" ng-click="moveRight()" title="Send to list 2" class="btn btn-default center-block add"><i class="glyphicon glyphicon-chevron-right"></i></button>
-        <button id="moveLeftButton" ng-click="moveLeft()" title="Send to list 1" class="btn btn-default center-block remove"><i class="glyphicon glyphicon-chevron-left"></i></button>
+        <button type="button" id="moveRightButton" ng-click="moveRight()" title="Send to list 2" class="btn btn-default center-block add"><i class="glyphicon glyphicon-chevron-right"></i></button>
+        <button type="button" id="moveLeftButton" ng-click="moveLeft()" title="Send to list 1" class="btn btn-default center-block remove"><i class="glyphicon glyphicon-chevron-left"></i></button>
     </div>
     <div class="col-sm-5 right-container">
         <label>{{duallistOption.rightContainerLabel}}</label>
@@ -33,15 +33,15 @@
             <span class="info" ng-if="rightscope.length > 0">Showing all {{rightscope.length}}</span>
         <span class="info" ng-if="rightscope.length == 0">Empty List</span>
         </span>
-        <form class="form-inline">
+        <div class="form-inline">
             <div>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="rightsearch" placeholder="Search">
+                    <input type="text" class="form-control" id="rightsearch" placeholder="Rechercher">
                     <div class="input-group-addon">
                         <input ng-model="rightSelectAll" ng-change="selectAllRightContainer()" title="toggle all" class="all pull-right" type="checkbox"> </div>
                 </div>
             </div>
-        </form>
+        </div>
 
         <div class="right-sub-container">
             <div class="list-group" id="list2">

@@ -278,6 +278,7 @@ public class User extends AbstractAuditingEntity implements Serializable, Search
 	}
 
 	@Override
+	@Transient
 	public List<String> getAttributes() {
 		String[] attributes = { "login", "firstName", "lastName", "authorities" };
 		return Arrays.asList(attributes);

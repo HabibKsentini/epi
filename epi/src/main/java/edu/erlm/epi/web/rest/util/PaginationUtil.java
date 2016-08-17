@@ -21,6 +21,7 @@ public class PaginationUtil {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Total-Count", "" + page.getTotalElements());
+        headers.add("X-Page-number", "" + page.getNumber());
         String link = "";
         if ((page.getNumber() + 1) < page.getTotalPages()) {
             link = "<" + (new URI(baseUrl +"?page=" + (page.getNumber() + 1) + "&size=" + page.getSize())).toString() + ">; rel=\"next\",";

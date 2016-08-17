@@ -83,7 +83,7 @@
 		<div class="block-section clearfix ">
 			<div class="form-group form-actions">
 				<button class="btn btn-sm btn-primary pull-right" type="button"
-					ui-sref="class-management.new">
+					ng-click="openNewModal()">
 					<span class="glyphicon glyphicon-plus"></span> <span
 						translate="class-management.home.createLabel">Create a new
 						Group</span>
@@ -114,24 +114,18 @@
 						<td class="text-center">
 							<div class="btn-group btn-group-xs">
 								<button type="submit"
-									ui-sref="user-management-detail({login:user.login})"
+									ui-sref="class-management-detail({id:group.id})"
 									class="btn btn-default">
 									<span class="glyphicon glyphicon-eye-open"></span>
 								</button>
 								<button type="submit"
-									ui-sref="user-management.edit({login:user.login})"
+									ng-click="openEditModal(group.id)"
 									class="btn btn-default">
 									<span class="glyphicon glyphicon-pencil"></span>
 								</button>
 								<button type="submit"
-									ui-sref="user-management.password({login:user.login})"
-									class="btn  btn-default">
-									<span class="fa fa-key"></span>
-								</button>
-								<button type="submit"
-									ui-sref="user-management.delete({login:user.login})"
-									class="btn btn-danger "
-									ng-disabled="currentAccount.login==user.login">
+									ng-click="openDeleteModal(group.id, group.completeName)"
+									class="btn btn-danger ">
 									<span class="glyphicon glyphicon-trash"></span>
 								</button>
 							</div>

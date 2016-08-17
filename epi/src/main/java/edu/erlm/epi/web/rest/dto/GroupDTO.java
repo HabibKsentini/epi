@@ -28,5 +28,15 @@ public class GroupDTO {
 		this.level = group.getLevel(); 
 		this.schoolYear = group.getSchoolYear(); 
 	}
+	
+	public Group convert() {
+		Group group = new Group(); 
+		group.setId(this.id);
+		group.setName(this.getName());
+		group.setLevel(this.getLevel());
+		group.setSchoolYear(this.getSchoolYear());
+		group.setStudents(this.getStudents());
+		return group; 
+	}
 
 }
