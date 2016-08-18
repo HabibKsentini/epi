@@ -181,5 +181,4 @@ public class TeachingExercise extends AbstractAuditingEntity implements Serializ
 		String[] attributes = { "topic", "subject", "group", "status", "medias" };
 		return Arrays.asList(attributes);
 	}
-
 }

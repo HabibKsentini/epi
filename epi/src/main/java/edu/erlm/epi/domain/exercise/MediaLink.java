@@ -40,6 +40,4 @@ public class MediaLink extends AbstractAuditingEntity implements Serializable {
 	@Column(name="teaching_exercise_id")
 	private Long teachingExerciseId; 
 	
-	
-
 }
