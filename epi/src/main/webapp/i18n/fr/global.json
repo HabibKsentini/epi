@@ -32,8 +32,9 @@
 			"admin": 
 			{
 				"main": "Administration",
-				"user-management": "Gestion utilisateur",
-				"class-management": "Gestion classe",
+				"user-management": "Utilisateurs",
+				"class-management": "Classes",
+				"schoolYear-management" : "Années scolaires", 
 				"tracker": "Suivi des utilisateurs",
 				"metrics": "Métriques",
 				"health": "Diagnostics",
@@ -41,8 +42,7 @@
 				"logs": "Logs",
 				"audits": "Audits",
 				"apidocs": "API",
-				"database": "Base de données",
-				"jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+				"database": "Base de données"
 			},
 
 			"language": "Langue"
@@ -132,7 +132,7 @@
 			"search": "Chercher", 
 			"reset": "Réinitialiser",
 			"publish" : "Publier",
-			"markToRead" :"Ajouter à  la Liste de lecture"
+			"markToRead" :"Ajouter à  la Liste de lecture"
 		},
 
 		"detail": 

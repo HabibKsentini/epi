@@ -1,0 +1,63 @@
+<div class="block full">
+		<div class="block-title">
+			<h2>
+				<span translate="school-year-managment.home.title">SchoolYear</span>
+			</h2>
+		</div>
+
+		<div class="block-section clearfix ">
+			<div class="form-group form-actions">
+				
+					<button class="btn btn-sm btn-primary pull-right"
+						ui-sref="school-year-management.new">
+						<i class="glyphicon glyphicon-plus "></i> <span
+						translate="school-year-managment.home.createLabel">Create a new
+						User</span>
+					</button>
+				
+			</div>
+		</div>
+
+		<div class="table-responsive remove-margin-bottom">
+			<table
+				class="table table-striped table-bordered table-vcenter remove-margin-bottom"
+				
+				>
+				<thead>
+					<tr>
+						<th translate="school-year-managment.name">Name</th>
+						<th translate="school-year-managment.status">Status</th>
+						<th></th>
+					</tr>
+				</thead>
+				
+				
+				<tbody>
+					<tr ng-repeat="schoolYear in schoolYears track by schoolYear.id">
+						<td>{{schoolYear.name}}</td>
+						
+						<td><span class="label label-danger"
+							 ng-show="!schoolYear.active"
+							translate="school-year-managment.deactivated">Desactivated</span>
+							<span class="label label-success"
+							ng-show="schoolYear.active"
+							translate="school-year-managment.activated" >Activated</span>
+						</td>
+
+
+						
+						
+						<td class="text-center">
+							<div class="btn-group btn-group-xs">
+								<button type="submit"
+									ui-sref="school-year-management.edit({id: schoolYear.id})"
+									class="btn btn-default">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>

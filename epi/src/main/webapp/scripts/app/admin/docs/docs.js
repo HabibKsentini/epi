@@ -11,7 +11,7 @@ angular.module('epiApp')
                     pageTitle: 'global.menu.admin.apidocs'
                 },
                 views: {
-                    'content@': {
+                    'content@site': {
                         templateUrl: 'scripts/app/admin/docs/docs.html'
                     }
                 },

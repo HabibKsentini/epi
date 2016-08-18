@@ -1,0 +1,22 @@
+{
+	"school-year-managment": 
+	{
+		"home": 
+		{
+			"title": "Années scolaires",
+			"createLabel": "Créer une nouvelle année scolaire",
+			"createOrEditLabel": "Créer ou éditer une année scolaire"
+		},
+
+		"detail": 
+		{
+			"title": "Année scolaire"
+		},
+
+		"activated": "Activé",
+		"deactivated": "Désactivé",
+		"status": "Statut", 
+		"name": "Nom" 
+		
+	}
+}

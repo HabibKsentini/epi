@@ -9,10 +9,12 @@
 			<div
 				class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
 				<div class="sidebar-user-avatar">
-					<a href="page_ready_user_profile.php"> 
-					<img has-authority="ROLE_TEACHER" src="assets/images/teacher.png" alt="avatar">
-					<img has-authority="ROLE_STUDENT" src="assets/images/student.png" alt="avatar">
-					<img has-authority="ROLE_ADMIN"  src="assets/images/admin.png" alt="avatar">
+					<a href="page_ready_user_profile.php"> <img
+						has-authority="ROLE_TEACHER" src="assets/images/teacher.png"
+						alt="avatar"> <img has-authority="ROLE_STUDENT"
+						src="assets/images/student.png" alt="avatar"> <img
+						has-authority="ROLE_ADMIN" src="assets/images/admin.png"
+						alt="avatar">
 					</a>
 				</div>
 				<div class="sidebar-user-name">{{userName}}</div>
@@ -39,7 +41,8 @@
 					uib-dropdown-toggle ng-click="check(2)"><i
 						class=" glyphicon glyphicon-briefcase sidebar-nav-icon"></i><span
 						class="sidebar-nav-mini-hide"
-						translate="global.menu.navigation.main">Navigation par theme</span></a></li>
+						translate="global.menu.navigation.main">Navigation par
+							theme</span></a></li>
 
 
 				<li has-authority="ROLE_ADMIN"><a ui-sref-active="active"
@@ -55,27 +58,38 @@
 
 					<ul class="collapse" uib-collapse="collapseVar!=3">
 
-						<li ><a ui-sref-active="active" ui-sref="user-management"><span
+						<li><a ui-sref-active="active" ui-sref="user-management"><span
 								class="glyphicon glyphicon-user"></span> &#xA0;<span
 								translate="global.menu.admin.user-management">User
 									management</span></a></li>
 
-						<li ><a ui-sref-active="active" ui-sref="class-management"><span
+						<li><a ui-sref-active="active" ui-sref="class-management"><span
 								class="fa fa-users"></span> &#xA0;<span
 								translate="global.menu.admin.class-management">Class
 									Management</span></a></li>
 
-						<li ><a ui-sref-active="active" ui-sref="metrics"><span
+						<li><a ui-sref-active="active"
+							ui-sref="school-year-management"><span
+								class="glyphicon glyphicon-folder-open
+								"></span> &#xA0;<span
+								translate="global.menu.admin.schoolYear-management">School
+									year Management</span></a></li>
+
+						<li><a ui-sref-active="active" ui-sref="metrics"><span
 								class="glyphicon glyphicon-dashboard"></span> &#xA0;<span
 								translate="global.menu.admin.metrics">Metrics</span></a></li>
 
-						<li ><a ui-sref-active="active" ui-sref="health"><span
+						<li><a ui-sref-active="active" ui-sref="health"><span
 								class="glyphicon glyphicon-heart"></span> &#xA0;<span
 								translate="global.menu.admin.health">Health</span></a></li>
 
-						<li ><a ui-sref-active="active" ui-sref="audits"><span
+						<li><a ui-sref-active="active" ui-sref="audits"><span
 								class="glyphicon glyphicon-bell"></span> &#xA0;<span
 								translate="global.menu.admin.audits">Audits</span></a></li>
+
+						<li><a ui-sref-active="active" ui-sref="docs"><span
+								class="glyphicon glyphicon-book"></span> &#xA0;<span
+								translate="global.menu.admin.apidocs">Audits</span></a></li>
 
 
 
