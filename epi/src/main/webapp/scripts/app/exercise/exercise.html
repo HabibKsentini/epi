@@ -4,7 +4,7 @@
 	epi-show-validation ng-submit="ExerciseController.updateExercise()">
 
 	<div class="block-section clearfix">
-		<div class="form-group form-actions">
+		<div class="form-group form-actions" id="step1">
 			<div class="col-xs-12 ">
 				<button class="btn btn-sm btn-info " type="button"
 					ui-sref="exercise-preview">
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 	</div>
-	<uib-accordion> <uib-accordion-group is-open="isOpen"
+	<uib-accordion> <uib-accordion-group is-open="isOpen" id="step2"
 		heading="{{'entity.action.addinfos' | translate}}">
 	<div class="panel-body">
 		<div class="form-group">
@@ -156,7 +156,7 @@
 	
 	
 		<uib-accordion> <uib-accordion-group
-		ng-init="isOpen = true" is-open="isOpen"
+		ng-init="isOpen = true" is-open="isOpen" id="step3"
 		heading="{{'exercise.media.medias' | translate}}">
 	<div class="panel-body">
 
@@ -213,8 +213,7 @@
 	
 	
 	
-	
-	<uib-accordion> <uib-accordion-group is-open="isOpen"
+	<uib-accordion> <uib-accordion-group is-open="isOpen" id="step4"
 		heading="{{'entity.action.addcontent' | translate}}">
 	<div class="panel-body">
 		<div class="form-group">				
@@ -223,7 +222,7 @@
 	</div>
 
 	</uib-accordion-group></uib-accordion>
-	<uib-accordion> <uib-accordion-group is-open="isOpen"
+	<uib-accordion> <uib-accordion-group is-open="isOpen" id="step5"
 		heading="{{'entity.action.joinfiles' | translate}}">
 	<div class="panel-body">
 

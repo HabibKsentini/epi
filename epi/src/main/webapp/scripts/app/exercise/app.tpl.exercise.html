@@ -1,7 +1,10 @@
-<ul class="breadcrumb breadcrumb-top">
+<ul class="breadcrumb breadcrumb-top" ng-intro-options="IntroOptions"
+     ng-intro-method="CallMe">
 
 	<li ui-sref="home">Accueil</li>
 	<li class="active"><a ui-sref="exercise-new" translate="exercise.create.title"> Ajouter EPI </a></li>
+	
+	<button ng-click="CallMe();">Go</button>
 </ul>
 
 <div class="block">

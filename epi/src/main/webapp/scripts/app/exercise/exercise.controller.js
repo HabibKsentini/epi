@@ -17,6 +17,42 @@ angular.module('epiApp').controller(
 			vm.newMediaLink = "" ;
 			vm.removeMediaLink = removeMediaLink;
 		
+			
+			$scope.IntroOptions = {
+					steps:[
+					{
+					    element: '#step1',
+					    intro: "Barre de boutons pour visualiser, enregistrer ou annuler la création de l'EPI \n l'enregistrement est candionné par le saisi des champs obligatoires !"
+					},
+					{
+					    element: '#step2',
+					    intro: "Champs obligatoires pour l'EPI",
+					    position: 'top'
+					},
+					{
+					    element: '#step3',
+					    intro: "Cette partie permet de lier des vidéos Youtube à l'EPI",
+					    position: 'top'
+					},
+					{
+					    element: '#step4',
+					    intro: "Cette zone permet le saisi du contenu d'EPI",
+					    position: 'top'
+					},
+					{
+					    element: '#step5',
+					    intro: "Cette partie permet de joindre des fichiers à l'EPI",
+					    position: 'top'
+					}    
+					],
+			        showStepNumbers: false,
+			        exitOnOverlayClick: true,
+			        exitOnEsc:true,
+			        nextLabel: '<strong>Suivant &gt;</strong>',
+			        prevLabel: '<span style="color:green">&lt; Précedent</span>',
+			        skipLabel: 'Fermer',
+			        doneLabel: 'Fin'
+			}
 			// //////////
 
 			initExercise();

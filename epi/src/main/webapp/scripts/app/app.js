@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('epiApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 
+angular.module('epiApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 'angular-intro',
     'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
     'ui.bootstrap', 'ngAnimate', 'ui.router', 'anim-in-out', 'infinite-scroll', 'angular-loading-bar', 'localytics.directives', 'ngDropzone', 'textAngular', 'hyperResource'])
 
