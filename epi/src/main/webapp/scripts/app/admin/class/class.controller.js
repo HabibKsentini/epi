@@ -192,9 +192,11 @@ angular.module('epiApp').controller(
 						if(groupEntity.$promise == undefined){
 							$scope.class = groupEntity
 						}else {
+							groupEntity.$promise.then(function(data) {
 							data.students = $filter("baseUsersInfos")(data.students);
 							$scope.class = data;
 							updateSelectedStudents();
+							});
 						}
 					}
 
