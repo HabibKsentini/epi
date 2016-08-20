@@ -1,0 +1,30 @@
+{
+  "name": "angular-intro.js",
+  "version": "2.0.3",
+  "main": "src/angular-intro.js",
+  "description": "Angular directive to wrap intro.js",
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/*.html",
+    "README.md",
+    "assets"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "intro.js": "https://github.com/usablica/intro.js.git#2.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/mendhak/angular-intro.js",
+  "_release": "2.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.3",
+    "commit": "2e001618a82ced0b3cc6ef31f71e8647b176ebdb"
+  },
+  "_source": "https://github.com/mendhak/angular-intro.js.git",
+  "_target": "^2.0.3",
+  "_originalSource": "angular-intro.js",
+  "_direct": true
+}
