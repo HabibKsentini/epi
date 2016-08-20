@@ -19,11 +19,11 @@ spring:
         livereload:
             enabled: false
     datasource:
-        driver-class-name: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://localhost:5432/epi
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/epi_bd
         name:
         username: epi
-        password:
+        password: epi
     jpa:
         database-platform: edu.erlm.epi.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

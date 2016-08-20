@@ -29,6 +29,7 @@
 			<column name="name" type="varchar(255)">
 				<constraints unique="true" nullable="false" />
 			</column>
+			<column name="topic_color" type="varchar(10)" />
 		</createTable>
 
 		<loadData encoding="UTF-8" file="config/liquibase/topics.csv"

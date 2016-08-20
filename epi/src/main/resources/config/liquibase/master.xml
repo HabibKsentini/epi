@@ -14,7 +14,6 @@
 	<include file="classpath:config/liquibase/changelog/v8_update_schema.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:config/liquibase/changelog/v9_update_schema.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:config/liquibase/changelog/v10_update_schema.xml" relativeToChangelogFile="false"/>
-	<include file="classpath:config/liquibase/changelog/v11_update_schema.xml" relativeToChangelogFile="false"/>
 	
 	
 	
