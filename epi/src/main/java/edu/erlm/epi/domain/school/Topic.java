@@ -24,7 +24,7 @@ import lombok.Setter;
 @Entity
 @EqualsAndHashCode(includes = { "name" })
 @Table(name = "t_topic_param")
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Topic implements Serializable {
 
 	private static final long serialVersionUID = 1L;

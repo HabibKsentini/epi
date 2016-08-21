@@ -83,7 +83,7 @@ angular.module('epiApp')
                             AlertService.add(
                                 {
                                     type: "danger",
-                                    msg: key,
+                                    msg: "hello",
                                     params: data,
                                     timeout: 50000,
                                     toast: AlertService.isToast(),

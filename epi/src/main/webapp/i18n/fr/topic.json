@@ -1,0 +1,24 @@
+{
+	"topic": 
+	{
+		"home": 
+		{
+			"title": "Thèmes",
+			"createLabel": "Créer un nouveau thème",
+			"createOrEditLabel": "Créer ou éditer un thème"
+		},
+
+		"delete": 
+		{
+			"question": "Etes-vous certain de vouloir supprimer le thème:  {{ name }} ?"
+		},
+
+		"detail": 
+		{
+			"title": "Thème"
+		},
+
+		"color": "Coleur",
+		"name": "Nom"
+	}
+}

@@ -52,7 +52,6 @@ angular.module('epiApp').factory(
 				'query' : {
 					method : 'GET',
 					isArray : true,
-					cache : true,
 					params : 'sort_by=id',
 
 					transformResponse : function(data) {
@@ -63,6 +62,10 @@ angular.module('epiApp').factory(
 						});
 						return data;
 					}
+				}, 
+				'delete' : {
+					method : 'DELETE',
+					url : 'api/topics/:id'
 				}
 			});
 		});
