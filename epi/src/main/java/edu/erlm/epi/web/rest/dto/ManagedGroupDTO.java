@@ -13,34 +13,52 @@ import lombok.Setter;
 @Setter
 public class ManagedGroupDTO {
 
-	private Long id ;
+	private Long id;
 	private Level level;
 	private SchoolYear schoolYear;
 	private String name;
 	private List<Student> students;
-	private String completeName; 
+	private String completeName;
 
 	/**
 	 * 
 	 */
-	public ManagedGroupDTO(){
+	public ManagedGroupDTO() {
 	}
 
-	public ManagedGroupDTO(Group group){
-		this.id = group.getId(); 
-		this.level = group.getLevel();
-		this.level.getId(); 
-		this.schoolYear = group.getSchoolYear(); 
-		this.schoolYear.getId(); 
-		this.name = group.getName(); 
-		this.students = group.getStudents(); 
-		this.students.size(); 
-		this.completeName = group.getCompleteName(); 
+	public ManagedGroupDTO(Group group) {
+		this.id = group.getId();
+		this.name = group.getName();
+		this.completeName = group.getCompleteName();
+		getStudents(group);
+		getLevel(group);
+		getSchoolYear(group);
 	}
-	
+
+	private void getLevel(Group group) {
+		if (group.getLevel() != null) {
+			this.level = group.getLevel();
+			this.level.getId();
+		}
+	}
+
+	private void getSchoolYear(Group group) {
+		if (group.getSchoolYear() != null) {
+			this.schoolYear = group.getSchoolYear();
+			this.schoolYear.getId();
+		}
+	}
+
+	private void getStudents(Group group) {
+		if (group.getStudents() != null) {
+			this.students = group.getStudents();
+			this.students.size();
+		}
+	}
+
 	public Group convert(Group group) {
-		if(group == null){
-			group = new Group(); 
+		if (group == null) {
+			group = new Group();
 		}
 		group.setId(id);
 		group.setLevel(level);

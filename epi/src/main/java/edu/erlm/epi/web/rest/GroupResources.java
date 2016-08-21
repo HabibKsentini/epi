@@ -55,7 +55,7 @@ public class GroupResources {
 	public ResponseEntity<?> create(@RequestBody ManagedGroupDTO groupDTO) throws URISyntaxException {
 		if(groupRepository.findByNameAndLevelAndSchoolYear(groupDTO.getName(), groupDTO.getLevel().getName(), groupDTO.getSchoolYear().getName()).isPresent()){
 			return ResponseEntity.badRequest()
-					.headers(HeaderUtil.createFailureAlert("class-management", "Class alredy exists", "name, level, schoolyear already in use"))
+					.headers(HeaderUtil.createFailureAlert("class-management", "Class alredy exists", "name, level, school year already in use"))
 					.body(null);
 		}
 		Group group = groupService.createOrUpdate(groupDTO); 

@@ -323,7 +323,7 @@ angular.module('epiApp').controller(
 							leftContainerLabel : 'Eleves disponibles',
 							rightContainerLabel : 'Eleves selectionnés',
 							onMoveRight : function() {
-								selectedStudents = selectedStudents.concat($scope.addValue);
+								selectedStudents = addToSelectedStudents($scope.addValue);
 								$scope.addValue = [];
 							},
 							onMoveLeft : function() {
@@ -339,6 +339,13 @@ angular.module('epiApp').controller(
 							}
 						};
 
+					}
+					
+					function addToSelectedStudents(newSelectStudent){
+						if(selectedStudents == undefined){
+							selectedStudents= []; 
+						}
+						return selectedStudents.concat(newSelectStudent);
 					}
 
 					function updateSelectedStudents() {
