@@ -126,8 +126,8 @@ angular.module('epiApp')
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
                         templateUrl: 'scripts/app/admin/user-management/user-management-password-dialog.html',
-                        controller: 'PasswordController',
-                        size: 'md',
+                        controller: 'PasswordDialogController',
+                        size: 'md'
                        
                     }).result.then(function(result) {
                         $state.go('user-management', null, { reload: true });

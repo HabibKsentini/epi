@@ -145,11 +145,26 @@ public class AccountResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<?> changePassword(@RequestBody String password) {
+    public ResponseEntity<?> changeCurrentUserPassword(@RequestBody String password) {
         if (!checkPasswordLength(password)) {
             return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
         }
-        userService.changePassword(password);
+        userService.changeCurrentUserPassword(password);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    /**
+     * POST  /change_password -> changes the current user's password
+     */
+    @RequestMapping(value = "/account/change_password/{login}",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<?> changePassword(@PathVariable String login, @RequestBody String password) {
+        if (!checkPasswordLength(password)) {
+            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+        }
+        userService.changeUserPassword(login, password);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

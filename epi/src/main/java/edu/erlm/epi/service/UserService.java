@@ -186,7 +186,16 @@ public class UserService {
         });
     }
 
-    public void changePassword(String password) {
+    public void changeUserPassword(String login, String password) {
+        userRepository.findOneByLogin(login).ifPresent(u -> {
+            String encryptedPassword = passwordEncoder.encode(password);
+            u.setPassword(encryptedPassword);
+            userRepository.save(u);
+            log.debug("Changed password for User: {}", u.getLogin());
+        });
+    }
+    
+    public void changeCurrentUserPassword(String password) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUser().getUsername()).ifPresent(u -> {
             String encryptedPassword = passwordEncoder.encode(password);
             u.setPassword(encryptedPassword);

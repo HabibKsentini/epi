@@ -186,17 +186,19 @@ angular.module('epiApp')
 		function init(){
 		        entity.$promise.then(function(data) {
 					$scope.topic = data;
-				})
+				}); 
+				$scope.error = false; 
 		        
 		}        
         $scope.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
         $scope.confirmDelete = function () {
-            Topic.delete({id: $scope.topic.id},
-                function () {
-                    $uibModalInstance.close(true);
-                });
+            Topic.delete({id: $scope.topic.id},onDeletSuccess, onDeleteError);
         };
+        
+        function onDeleteError(){
+        	$scope.error = true; 
+        }
 
     });
