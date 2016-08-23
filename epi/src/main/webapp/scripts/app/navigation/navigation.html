@@ -1,24 +1,23 @@
-
-
-
 <div class="row">
 	<div class="col-md-12">
 		<div class="row" >
-			<div ng-repeat="topic in NavigationController.topics" class="col-sm-3">
-				<div class="widget">
-					<div class="widget-advanced">
-						<div ng-style="{'background-color': topic.topicColor}"
+			<div ng-repeat="topic in NavigationController.topics | orderBy:'id'" class="col-sm-3">
+				<div class="widget" style="border-radius: 35px;">
+					<div class="widget-advanced" style="border-radius: 35px;">
+						<div  style="border-radius: 35px; background-color : {{topic.topicColor}};"
 							class="widget-header text-center">
-							<h3 class="widget-content-light" style="font-size: 22px"> 
+							<h3 class="widget-content-light" style="font-size: 20px"> 
 								<a  style="color: #fff"  ui-sref="navigationSearch({id : topic.id})"
 									class="">{{topic.name}}</a>
 							</h3>
 						</div>
 						<div class="widget-main">
-							<a ui-sref="navigationSearch({id : topic.id})"
+							<a ui-sref="navigationSearch({id : topic.id})" style="border-radius: 35px;"
 								class="widget-image-container animation-fadeIn animation-hatch"> <span
-								class="widget-icon themed-background-default"><i
-									class="fa fa-globe"></i></span>
+								class="widget-icon themed-background-default">
+								
+								<img ng-src="{{topic.image}}" style="max-height: 42px;"> </img>
+									</span>
 							</a> 
 						</div>
 					</div>

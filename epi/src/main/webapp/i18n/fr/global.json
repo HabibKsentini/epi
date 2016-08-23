@@ -35,6 +35,7 @@
 				"user-management": "Utilisateurs",
 				"class-management": "Classes",
 				"schoolYear-management" : "Années scolaires", 
+				"topic-management" : "Thèmes",
 				"tracker": "Suivi des utilisateurs",
 				"metrics": "Métriques",
 				"health": "Diagnostics",
