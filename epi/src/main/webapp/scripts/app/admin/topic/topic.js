@@ -104,7 +104,7 @@ angular
                             }]
                         }
                     }).result.then(function(result) {
-                        $state.go('user-management', null, { reload: true });
+                        $state.go('topic-management', null, { reload: true });
                     }, function() {
                         $state.go('^');
                     })
@@ -195,6 +195,9 @@ angular.module('epiApp')
         };
         $scope.confirmDelete = function () {
             Topic.delete({id: $scope.topic.id},onDeletSuccess, onDeleteError);
+        };
+        function onDeletSuccess() {
+            $uibModalInstance.close(true);
         };
         
         function onDeleteError(){

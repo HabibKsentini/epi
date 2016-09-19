@@ -2,28 +2,30 @@
 <div id="sidebar">
 	<div id="sidebar-scroll">
 		<div class="sidebar-content">
-			<a href="index.php" class="sidebar-brand"> <i
+			<a href="" class="sidebar-brand"> <i
 				class="glyphicon glyphicon-book"></i><span
 				class="sidebar-nav-mini-hide"><strong>BNEPI</strong></span>
 			</a>
 			<div
 				class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
 				<div class="sidebar-user-avatar">
-					<a href="page_ready_user_profile.php"> <img
+					<!-- <a href="page_ready_user_profile.php"> --> 
+					<img
 						has-authority="ROLE_TEACHER" src="assets/images/teacher.png"
 						alt="avatar"> <img has-authority="ROLE_STUDENT"
 						src="assets/images/student.png" alt="avatar"> <img
 						has-authority="ROLE_ADMIN" src="assets/images/admin.png"
 						alt="avatar">
-					</a>
+					<!-- </a> -->
 				</div>
 				<div class="sidebar-user-name">{{userName}}</div>
 				<div class="sidebar-user-links">
-					<a href="" ui-sref="settings" ui-sref-active="active"> <i
-						class="glyphicon glyphicon-user"></i></a> <a ui-sref="password"
-						href="" ui-sref-active="active"><i
-						class="glyphicon glyphicon-wrench"></i></a> <a href=""
-						ng-click="logout()" ui-sref-active="active"><i
+					<!-- <a href="" ui-sref="settings" ui-sref-active="active">
+					 <i class="glyphiconglyphicon-user">
+						</i></a> -->
+						 <a ui-sref="password" href="" ui-sref-active="active"><i
+						class="glyphicon glyphicon-wrench"></i></a> 
+						<a href=""	ng-click="logout()" ui-sref-active="active"><i
 						class="glyphicon glyphicon-log-out"></i></a>
 				</div>
 			</div>

@@ -7,8 +7,11 @@
 			<small>Connectez-vous</small>
 		</h1>
 	</div>
-
+  			
 		<div class="block push-bit">
+			<div class="alert alert-danger" ng-show="authenticationError"  translate="global.loginFailMessage">
+                <strong>Authentication failed!</strong> 
+            </div>
 			<form class="form-horizontal form-bordered form-control-borderless"
 				class="form" role="form" ng-submit="login($event)"
 				novalidate="novalidate">
